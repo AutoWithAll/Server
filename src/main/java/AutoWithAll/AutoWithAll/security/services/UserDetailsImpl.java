@@ -28,15 +28,15 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority>authorities;
 
-    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Collection<?extends  GrantedAuthority>authorities){
-        this.id=id;
-        this.fname=fname;
-        this.lname=lname;
-        this.tnumber=tnumber;
-        this.nic=nic;
-        this.username=username;
-        this.authorities=authorities;
-    }
+//    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Collection<?extends  GrantedAuthority>authorities){
+//        this.id=id;
+//        this.fname=fname;
+//        this.lname=lname;
+//        this.tnumber=tnumber;
+//        this.nic=nic;
+//        this.username=username;
+//        this.authorities=authorities;
+//    }
 
     public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,String password,Collection<?extends  GrantedAuthority>authorities){
         this.id=id;
