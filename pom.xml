@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>lostAndFind-server</artifactId>
+	<artifactId>autowithall-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>AutoWithAll</name>
 	<description>Demo project for Spring Boot</description>
