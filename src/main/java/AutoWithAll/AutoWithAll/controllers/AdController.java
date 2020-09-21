@@ -26,12 +26,29 @@ public class AdController {
 
 
     @PostMapping("/postadd")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_LCOMPANY') or hasRole('ROLE_ICOMPANY') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
     public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication){
         UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
         User user=userRepository.findById(userDetails.getId()).get();
         Advertisement advertisement = new Advertisement(
-                adRequest.getVehicle_type(),
+                adRequest.getName(),
+                adRequest.getT_number(),
+                adRequest.getEmail(),
+                adRequest.getLocation(),
+                adRequest.getTitle(),
+                adRequest.getPrice(),
+                adRequest.getV_type(),
+                adRequest.getManufacturer(),
+                adRequest.getModel(),
+                adRequest.getV_condition(),
+                adRequest.getM_year(),
+                adRequest.getR_year(),
+                adRequest.getMileage(),
+                adRequest.getE_capacity(),
+                adRequest.getTransmission(),
+                adRequest.getFuel_type(),
+                adRequest.getColour(),
+                adRequest.getDescription(),
                 user
         );
         //return  userDetails.getUsername();
@@ -39,9 +56,9 @@ public class AdController {
     }
 
 
-    @GetMapping("/")
-    public String index(){
-        return "Fucking hell";
-    }
+//    @GetMapping("/")
+//    public String index(){
+//        return "Fucking hell";
+//    }
 
 }
