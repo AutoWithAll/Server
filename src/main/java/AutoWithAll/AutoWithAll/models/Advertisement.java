@@ -2,6 +2,8 @@ package AutoWithAll.AutoWithAll.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 @Table(name = "advertisement")
@@ -10,9 +12,6 @@ public class Advertisement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @NotBlank
-//    private String vehicle_type;
 
     @NotBlank
     private  String name;
@@ -68,15 +67,19 @@ public class Advertisement {
     @NotBlank
     private String description;
 
+    @NotNull
+    private Integer falg;
+
     @ManyToOne
     private User user;
 
+//    @ManyToMany
+//    Set<ReportAd> reportAds;
+
     public Advertisement(){}
 
-//    public Advertisement(String vehicle_type) {
-//        this.vehicle_type = vehicle_type;
 
-    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description,User user) {
+    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description,@NotNull Integer falg,User user) {
         this.name = name;
         this.t_number = t_number;
         this.email = email;
@@ -95,14 +98,9 @@ public class Advertisement {
         this.fuel_type = fuel_type;
         this.colour = colour;
         this.description = description;
+        this.falg = falg;
         this.user = user;
     }
-//    }
-
-//    public Advertisement(@NotBlank String vehicle_type, User user) {
-////        this.vehicle_type = vehicle_type;
-//        this.user = user;
-//    }
 
     public Long getId() {
         return id;
@@ -111,10 +109,6 @@ public class Advertisement {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public String getVehicle_type() {
-//        return vehicle_type;
-//    }
 
     public String getName() {
         return name;
@@ -204,6 +198,14 @@ public class Advertisement {
         this.m_year = m_year;
     }
 
+    public Integer getFalg() {
+        return falg;
+    }
+
+    public void setFalg(Integer falg) {
+        this.falg = falg;
+    }
+
     public String getR_year() {
         return r_year;
     }
@@ -260,9 +262,7 @@ public class Advertisement {
         this.description = description;
     }
 
-//    public void setVehicle_type(String vehicle_type) {
-//        this.vehicle_type = vehicle_type;
-//    }
+
 
     public User getUser() {
         return user;
@@ -271,6 +271,12 @@ public class Advertisement {
     public void setUser(User user) {
         this.user = user;
     }
-
-
+//
+//    public Set<ReportAd> getReportAds() {
+//        return reportAds;
+//    }
+//
+//    public void setReportAds(Set<ReportAd> reportAds) {
+//        this.reportAds = reportAds;
+//    }
 }

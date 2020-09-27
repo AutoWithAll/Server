@@ -1,19 +1,10 @@
 package AutoWithAll.AutoWithAll.payload.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class AdRequest {
 
-    @NotBlank
-//    private String vehicle_type;
-
-//    public String getVehicle_type() {
-//        return vehicle_type;
-//    }
-
-//    public void setVehicle_type(String vehicle_type) {
-//        this.vehicle_type = vehicle_type;
-//    }
     @NotBlank
     private  String name;
 
@@ -67,6 +58,9 @@ public class AdRequest {
 
     @NotBlank
     private String description;
+
+    @NotNull
+    private Integer flag;
 
     public String getName() {
         return name;
@@ -208,8 +202,17 @@ public class AdRequest {
         return description;
     }
 
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
+
 }
 

@@ -3,6 +3,8 @@ package AutoWithAll.AutoWithAll.controllers;
 import AutoWithAll.AutoWithAll.models.Advertisement;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.AdRequest;
+import AutoWithAll.AutoWithAll.payload.request.ReportAdRequest;
+import AutoWithAll.AutoWithAll.repository.AdRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.AdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
@@ -12,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
@@ -23,6 +26,13 @@ public class AdController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    AdRepository adRepository;
+
+//    @Autowired
+//    ReportAdDetailsImpl reportAdDetails;
+
 
 
     @PostMapping("/postadd")
@@ -49,11 +59,39 @@ public class AdController {
                 adRequest.getFuel_type(),
                 adRequest.getColour(),
                 adRequest.getDescription(),
+                adRequest.getFlag(),
                 user
         );
         //return  userDetails.getUsername();
         return adDetails.saveAdDetails(advertisement);
     }
+
+    @GetMapping("/getallad")
+    public List<Advertisement>getAllAd(){
+        return adRepository.findAll();
+    }
+
+
+
+
+//    @Autowired
+//    Advertisement advertisement;
+
+//    @PostMapping("/reportad/{id}")
+//    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest ){
+//        ReportAd reportAd = new ReportAd(
+//                reportAdRequest.getEmail(),
+//                reportAdRequest.getF_name(),
+//                reportAdRequest.getL_name(),
+//                reportAdRequest.getT_number(),
+//                reportAdRequest.getMessage(),
+//                reportAdRequest.getReason(),
+//                reportAdRequest.getAd_id(),
+//                id
+//        );
+//
+//        return reportAd;
+//    }
 
 
 //    @GetMapping("/")
