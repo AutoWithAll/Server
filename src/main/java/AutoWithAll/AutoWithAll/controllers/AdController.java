@@ -1,12 +1,14 @@
 package AutoWithAll.AutoWithAll.controllers;
 
 import AutoWithAll.AutoWithAll.models.Advertisement;
+import AutoWithAll.AutoWithAll.models.ReportAd;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.AdRequest;
 import AutoWithAll.AutoWithAll.payload.request.ReportAdRequest;
 import AutoWithAll.AutoWithAll.repository.AdRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.AdDetailsImpl;
+import AutoWithAll.AutoWithAll.security.services.ReportAdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,8 +32,8 @@ public class AdController {
     @Autowired
     AdRepository adRepository;
 
-//    @Autowired
-//    ReportAdDetailsImpl reportAdDetails;
+    @Autowired
+    ReportAdDetailsImpl reportAdDetails;
 
 
 
@@ -71,27 +73,22 @@ public class AdController {
         return adRepository.findAll();
     }
 
+    @PostMapping("/reportad/{id}")
+    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest ){
+        Advertisement advertisement = adRepository.findById(id).get();
 
+        ReportAd reportAd = new ReportAd(
+                reportAdRequest.getReason(),
+                reportAdRequest.getF_name(),
+                reportAdRequest.getL_name(),
+                reportAdRequest.getT_number(),
+                reportAdRequest.getEmail(),
+                reportAdRequest.getMessage(),
+                advertisement
+                );
 
-
-//    @Autowired
-//    Advertisement advertisement;
-
-//    @PostMapping("/reportad/{id}")
-//    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest ){
-//        ReportAd reportAd = new ReportAd(
-//                reportAdRequest.getEmail(),
-//                reportAdRequest.getF_name(),
-//                reportAdRequest.getL_name(),
-//                reportAdRequest.getT_number(),
-//                reportAdRequest.getMessage(),
-//                reportAdRequest.getReason(),
-//                reportAdRequest.getAd_id(),
-//                id
-//        );
-//
-//        return reportAd;
-//    }
+        return reportAdDetails.saveReportAdDetails(reportAd);
+    }
 
 
 //    @GetMapping("/")

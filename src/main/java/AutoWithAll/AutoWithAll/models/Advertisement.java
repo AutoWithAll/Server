@@ -73,8 +73,8 @@ public class Advertisement {
     @ManyToOne
     private User user;
 
-//    @ManyToMany
-//    Set<ReportAd> reportAds;
+    @OneToMany(mappedBy = "advertisement")
+    Set<ReportAd> reportAds;
 
     public Advertisement(){}
 
