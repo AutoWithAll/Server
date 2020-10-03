@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*" ,allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -51,6 +51,7 @@ public class AuthController {
     JwtUtils jwtUtils;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
 
     @PostMapping("/signin")
     public ResponseEntity<?>authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
@@ -79,6 +80,7 @@ public class AuthController {
                 roles));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signup")
     public  ResponseEntity<?>registerUSer(@Valid @RequestBody SignupRequest signupRequest){
         if(userRepository.existsByUsername(signupRequest.getUsername())){
