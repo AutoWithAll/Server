@@ -3,6 +3,7 @@ package AutoWithAll.AutoWithAll.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -75,6 +76,12 @@ public class Advertisement {
 
     @OneToMany(mappedBy = "advertisement")
     Set<ReportAd> reportAds;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "advertisement"
+    )
+    private Set<LPlan> lPlans = new HashSet<>();
 
     public Advertisement(){}
 
@@ -262,8 +269,6 @@ public class Advertisement {
         this.description = description;
     }
 
-
-
     public User getUser() {
         return user;
     }
@@ -271,12 +276,12 @@ public class Advertisement {
     public void setUser(User user) {
         this.user = user;
     }
-//
-//    public Set<ReportAd> getReportAds() {
-//        return reportAds;
-//    }
-//
-//    public void setReportAds(Set<ReportAd> reportAds) {
-//        this.reportAds = reportAds;
-//    }
+
+    public Set<LPlan> getlPlans() {
+        return lPlans;
+    }
+
+    public void setlPlans(Set<LPlan> lPlans) {
+        this.lPlans = lPlans;
+    }
 }

@@ -1,8 +1,12 @@
 package AutoWithAll.AutoWithAll.payload.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class LPlanRequest {
+
+    @NotNull
+    private Long ad_id;
 
     @NotBlank
     private String l_plan;
@@ -23,5 +27,13 @@ public class LPlanRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getAd_id() {
+        return ad_id;
+    }
+
+    public void setAd_id(Long ad_id) {
+        this.ad_id = ad_id;
     }
 }
