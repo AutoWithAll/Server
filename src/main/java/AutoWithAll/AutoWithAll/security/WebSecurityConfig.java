@@ -59,28 +59,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
-        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
 
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+//    @Bean
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("*"));
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+//        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+//        configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                .cors()
-                .and()
-                .csrf().disable()
+
+                .csrf().disable().cors().and()
                 .exceptionHandling()
                     .authenticationEntryPoint(unauthorizedHandler)
                 .and()
