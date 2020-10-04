@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ public class UserDetailsImpl implements UserDetails {
     private String lname;
     private String tnumber;
     private String nic;
+    private Date date;
 
     @JsonIgnore
     private String password;
@@ -38,13 +40,14 @@ public class UserDetailsImpl implements UserDetails {
 //        this.authorities=authorities;
 //    }
 
-    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,String password,Collection<?extends  GrantedAuthority>authorities){
+    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Date date,String password,Collection<?extends  GrantedAuthority>authorities){
         this.id=id;
         this.fname=fname;
         this.lname=lname;
         this.tnumber=tnumber;
         this.nic=nic;
         this.username=username;
+        this.date = date;
         this.password=password;
         this.authorities=authorities;
     }
@@ -61,12 +64,21 @@ public class UserDetailsImpl implements UserDetails {
                 user.getTnumber(),
                 user.getNic(),
                 user.getUsername(),
+                user.getDate(),
                 user.getPassword(),
                 authorities);
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities(){
         return authorities;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Long getId() {

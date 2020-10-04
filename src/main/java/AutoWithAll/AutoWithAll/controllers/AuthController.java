@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.awt.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -78,6 +79,7 @@ public class AuthController {
                 userDetails.getTnumber(),
                 userDetails.getUsername(),
                 userDetails.getNic(),
+                userDetails.getDate(),
                 roles));
     }
 
@@ -95,13 +97,17 @@ public class AuthController {
                     .body(new MessageResponse("Error: NIC is Already use!"));
         }
         // Create new user's account
+        Date date = new Date();
+
         User user = new User(
                 signupRequest.getFname(),
                 signupRequest.getLname(),
                 signupRequest.getTnumber(),
                 signupRequest.getNic(),
                 signupRequest.getUsername(),
-                encoder.encode(signupRequest.getPassword()));
+                encoder.encode(signupRequest.getPassword()),
+                date
+        );
 
         Set<String> strRoles = signupRequest.getRole();
         Set<Role> roles = new HashSet<>();

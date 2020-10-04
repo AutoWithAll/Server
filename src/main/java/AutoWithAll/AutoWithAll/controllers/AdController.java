@@ -22,10 +22,11 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.security.Principal;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/advertisement")
 public class AdController {
@@ -47,9 +48,12 @@ public class AdController {
 
     @PostMapping("/postadd")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
-    public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication){
-        UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
-        User user=userRepository.findById(userDetails.getId()).get();
+    public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        Date datetime = new Date();
+
 
         String[] images = adRequest.getImages();
         byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
@@ -85,7 +89,8 @@ public class AdController {
                 adRequest.getDescription(),
                 image1Id,
                 adRequest.getFlag(),
-                user
+                user,
+                datetime
         );
 
         //return  userDetails.getUsername();
@@ -93,7 +98,7 @@ public class AdController {
     }
 
     @GetMapping("/getimage/{id}")
-    public ResponseEntity<InputStreamResource> getAddImage(@PathVariable String id){
+    public ResponseEntity<InputStreamResource> getAddImage(@PathVariable String id) {
         FileInputStream file = null;
         try {
             file = new FileInputStream(fileLocation + "/" + id);
@@ -108,12 +113,12 @@ public class AdController {
     }
 
     @GetMapping("/getallad")
-    public List<Advertisement>getAllAd(){
+    public List<Advertisement> getAllAd() {
         return adRepository.findAll();
     }
 
     @PostMapping("/reportad/{id}")
-    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest ){
+    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
         Advertisement advertisement = adRepository.findById(id).get();
 
         ReportAd reportAd = new ReportAd(
@@ -124,7 +129,7 @@ public class AdController {
                 reportAdRequest.getEmail(),
                 reportAdRequest.getMessage(),
                 advertisement
-                );
+        );
 
         return reportAdDetails.saveReportAdDetails(reportAd);
     }
