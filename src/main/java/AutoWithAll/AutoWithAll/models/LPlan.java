@@ -3,6 +3,8 @@ package AutoWithAll.AutoWithAll.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "lplan")
@@ -20,13 +22,17 @@ public class LPlan {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Advertisement advertisement;
+
     public LPlan() {
     }
 
-    public LPlan(@NotBlank String l_plan, String description, User user) {
+    public LPlan(@NotBlank String l_plan, String description, User user,Advertisement advertisement) {
         this.l_plan = l_plan;
         this.description = description;
         this.user = user;
+        this.advertisement=advertisement;
     }
 
     public Long getId() {
@@ -59,5 +65,13 @@ public class LPlan {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Advertisement getAdvertisement() {
+        return advertisement;
+    }
+
+    public void setAdvertisement(Advertisement advertisement) {
+        this.advertisement = advertisement;
     }
 }

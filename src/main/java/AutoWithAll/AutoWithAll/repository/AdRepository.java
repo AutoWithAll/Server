@@ -14,4 +14,6 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
 
     @Override
     List<Advertisement> findAll();
+
+
 }

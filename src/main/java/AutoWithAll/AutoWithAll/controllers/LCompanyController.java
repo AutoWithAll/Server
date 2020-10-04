@@ -1,8 +1,10 @@
 package AutoWithAll.AutoWithAll.controllers;
 
+import AutoWithAll.AutoWithAll.models.Advertisement;
 import AutoWithAll.AutoWithAll.models.LPlan;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.LPlanRequest;
+import AutoWithAll.AutoWithAll.repository.AdRepository;
 import AutoWithAll.AutoWithAll.repository.LPlanRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.LPlanDetailsImpl;
@@ -26,15 +28,20 @@ public class LCompanyController {
     @Autowired
     LPlanDetailsImpl lPlanDetails;
 
+    @Autowired
+    AdRepository adRepository;
+
     @PostMapping("/postldetails")
     @PreAuthorize("hasRole('ROLE_LCOMPANY')")
     public LPlan lPlanPost(@RequestBody LPlanRequest lPlanRequest , Authentication authentication){
         UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
+        Advertisement advertisement = adRepository.findById(lPlanRequest.getAd_id()).get();
         LPlan lPlan = new LPlan(
                 lPlanRequest.getL_plan(),
                 lPlanRequest.getL_plan(),
-                user
+                user,
+                advertisement
         );
         return lPlanDetails.saveLPlanDetails(lPlan);
     }
