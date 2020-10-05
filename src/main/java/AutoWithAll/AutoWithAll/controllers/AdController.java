@@ -46,6 +46,7 @@ public class AdController {
     @Value("${upload.location}")
     private String fileLocation;
 
+//    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/postadd")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
     public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication) {
