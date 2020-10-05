@@ -11,14 +11,22 @@ import AutoWithAll.AutoWithAll.security.services.AdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.ReportAdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
 import java.security.Principal;
+import java.util.Base64;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/advertisement")
 public class AdController {
@@ -35,13 +43,32 @@ public class AdController {
     @Autowired
     ReportAdDetailsImpl reportAdDetails;
 
+    @Value("${upload.location}")
+    private String fileLocation;
 
-
+//    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/postadd")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
-    public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication){
-        UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
-        User user=userRepository.findById(userDetails.getId()).get();
+    public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        Date datetime = new Date();
+
+
+        String[] images = adRequest.getImages();
+        byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        String image1Id = UUID.randomUUID().toString();
+
+        try (FileOutputStream fos = new FileOutputStream(fileLocation + "/" + image1Id)) {
+            fos.write(image1);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         Advertisement advertisement = new Advertisement(
                 adRequest.getName(),
                 adRequest.getT_number(),
@@ -61,21 +88,38 @@ public class AdController {
                 adRequest.getFuel_type(),
                 adRequest.getColour(),
                 adRequest.getDescription(),
+                image1Id,
                 adRequest.getFlag(),
-                user
+                user,
+                datetime
         );
 
         //return  userDetails.getUsername();
         return adDetails.saveAdDetails(advertisement);
     }
 
+    @GetMapping("/getimage/{id}")
+    public ResponseEntity<InputStreamResource> getAddImage(@PathVariable String id) {
+        FileInputStream file = null;
+        try {
+            file = new FileInputStream(fileLocation + "/" + id);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(new InputStreamResource(file));
+    }
+
     @GetMapping("/getallad")
-    public List<Advertisement>getAllAd(){
+    public List<Advertisement> getAllAd() {
         return adRepository.findAll();
     }
 
     @PostMapping("/reportad/{id}")
-    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest ){
+    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
         Advertisement advertisement = adRepository.findById(id).get();
 
         ReportAd reportAd = new ReportAd(
@@ -86,7 +130,7 @@ public class AdController {
                 reportAdRequest.getEmail(),
                 reportAdRequest.getMessage(),
                 advertisement
-                );
+        );
 
         return reportAdDetails.saveReportAdDetails(reportAd);
     }

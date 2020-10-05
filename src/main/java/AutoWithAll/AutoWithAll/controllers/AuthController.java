@@ -26,12 +26,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.awt.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+
+@CrossOrigin(origins = "*" ,allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -51,6 +53,7 @@ public class AuthController {
     JwtUtils jwtUtils;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
 
     @PostMapping("/signin")
     public ResponseEntity<?>authenticateUser(@Valid @RequestBody LoginRequest loginRequest){
@@ -76,9 +79,11 @@ public class AuthController {
                 userDetails.getTnumber(),
                 userDetails.getUsername(),
                 userDetails.getNic(),
+                userDetails.getDate(),
                 roles));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/signup")
     public  ResponseEntity<?>registerUSer(@Valid @RequestBody SignupRequest signupRequest){
         if(userRepository.existsByUsername(signupRequest.getUsername())){
@@ -92,13 +97,17 @@ public class AuthController {
                     .body(new MessageResponse("Error: NIC is Already use!"));
         }
         // Create new user's account
+        Date date = new Date();
+
         User user = new User(
                 signupRequest.getFname(),
                 signupRequest.getLname(),
                 signupRequest.getTnumber(),
                 signupRequest.getNic(),
                 signupRequest.getUsername(),
-                encoder.encode(signupRequest.getPassword()));
+                encoder.encode(signupRequest.getPassword()),
+                date
+        );
 
         Set<String> strRoles = signupRequest.getRole();
         Set<Role> roles = new HashSet<>();
