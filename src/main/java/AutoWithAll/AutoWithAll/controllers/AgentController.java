@@ -16,10 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/agent")
 public class AgentController {
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     @Autowired
     UserRepository userRepository;
 
@@ -33,9 +30,6 @@ public class AgentController {
         User user = userRepository.findById(userDetails.getId()).get();
         System.out.println(user.getId());
         return adRepository.findAllByUser(user);
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     }
 }
