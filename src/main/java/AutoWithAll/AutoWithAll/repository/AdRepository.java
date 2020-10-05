@@ -12,12 +12,12 @@ import java.util.Optional;
 
 @Repository
 public interface AdRepository extends JpaRepository<Advertisement,Long> {
+
     @Override
     Optional<Advertisement> findById(Long id);
 
     @Override
     List<Advertisement> findAll();
+
     List<Advertisement> findAllByUser(User user);
-
-
 }
