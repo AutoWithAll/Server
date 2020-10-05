@@ -1,18 +1,21 @@
 package AutoWithAll.AutoWithAll.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name= "users",
-uniqueConstraints = {
-        @UniqueConstraint(columnNames = "nic"),
-        @UniqueConstraint(columnNames = "username")
-})
+@Table(name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "nic"),
+                @UniqueConstraint(columnNames = "username")
+        })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,24 +46,41 @@ public class User {
     @Size(max = 120)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role>roles=new HashSet<>();
 
-    public User(){
+    @Column(name = "register_date")
+//    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {
     }
-    public User(String fname,String lname,String tnumber,String nic,String username,String password){
+
+    public User(String fname, String lname, String tnumber, String nic, String username, String password, Date date) {
         this.fname = fname;
         this.lname = lname;
-        this.tnumber= tnumber;
+        this.tnumber = tnumber;
         this.nic = nic;
         this.username = username;
         this.password = password;
+        this.date = date;
     }
+
 
     public User(Long id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Long getId() {

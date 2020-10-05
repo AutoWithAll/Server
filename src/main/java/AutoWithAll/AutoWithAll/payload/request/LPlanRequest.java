@@ -9,16 +9,46 @@ public class LPlanRequest {
     private Long ad_id;
 
     @NotBlank
-    private String l_plan;
+    private String plan_amount;
+
+    private String no_of_installments;
+
+    private String interest;
+
+    private String inst_amt;
 
     private String description;
 
-    public String getL_plan() {
-        return l_plan;
+    public String getPlan_amount() {
+        return plan_amount;
     }
 
-    public void setL_plan(String l_plan) {
-        this.l_plan = l_plan;
+    public void setPlan_amount(String plan_amount) {
+        this.plan_amount = plan_amount;
+    }
+
+    public String getNo_of_installments() {
+        return no_of_installments;
+    }
+
+    public void setNo_of_installments(String no_of_installments) {
+        this.no_of_installments = no_of_installments;
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
+
+    public String getInst_amt() {
+        return inst_amt;
+    }
+
+    public void setInst_amt(String inst_amt) {
+        this.inst_amt = inst_amt;
     }
 
     public String getDescription() {
