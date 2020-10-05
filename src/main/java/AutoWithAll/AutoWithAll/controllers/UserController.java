@@ -26,4 +26,5 @@ public class UserController {
 //    User user = userRepository.findById(userDetails.getId()).get();
     return userRepository.findAll();
 }
+
 }

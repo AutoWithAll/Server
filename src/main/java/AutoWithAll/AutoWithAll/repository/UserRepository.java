@@ -1,6 +1,7 @@
 package AutoWithAll.AutoWithAll.repository;
 
 import AutoWithAll.AutoWithAll.models.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
     boolean existsByNic(String nic);
     @Override
     List<User> findAll();
+
+    //@Query("select count (us.id) from user us")
+    //List<Integer> getUserCount();
+
+
 }
