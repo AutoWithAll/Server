@@ -51,9 +51,9 @@ public class AdController {
                 adRequest.getPrice(),
                 adRequest.getV_type(),
                 adRequest.getManufacturer(),
-                adRequest.getM_year(),
                 adRequest.getModel(),
                 adRequest.getV_condition(),
+                adRequest.getM_year(),
                 adRequest.getR_year(),
                 adRequest.getMileage(),
                 adRequest.getE_capacity(),
@@ -63,6 +63,7 @@ public class AdController {
                 adRequest.getDescription(),
                 adRequest.getFlag(),
                 user
+
         );
 
         //return  userDetails.getUsername();
