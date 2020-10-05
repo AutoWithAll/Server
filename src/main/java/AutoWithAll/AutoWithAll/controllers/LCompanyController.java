@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
-@RequestMapping("/lcomany")
+@RequestMapping("/lcompany")
 public class LCompanyController {
 
     @Autowired
@@ -31,7 +31,7 @@ public class LCompanyController {
     @Autowired
     AdRepository adRepository;
 
-    @PostMapping("/postldetails")
+    @PostMapping("/postlplan")
     @PreAuthorize("hasRole('ROLE_LCOMPANY')")
     public LPlan lPlanPost(@RequestBody LPlanRequest lPlanRequest , Authentication authentication){
         UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
