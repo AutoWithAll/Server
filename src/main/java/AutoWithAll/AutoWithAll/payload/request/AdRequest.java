@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 public class AdRequest {
 
     @NotBlank
-    private  String name;
+    private String name;
 
     @NotBlank
     private String t_number;
@@ -59,8 +59,20 @@ public class AdRequest {
     @NotBlank
     private String description;
 
+    @NotBlank
+    private String[] images;
+
     @NotNull
     private Integer flag;
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
+
 
     public String getName() {
         return name;
