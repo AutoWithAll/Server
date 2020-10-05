@@ -52,12 +52,17 @@ public class AdController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
 
-        Date datetime = new Date();
-
-
         String[] images = adRequest.getImages();
         byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image2 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image3 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image4 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image5 = Base64.getDecoder().decode(images[0].split(",")[1]);
         String image1Id = UUID.randomUUID().toString();
+        String image2Id = UUID.randomUUID().toString();
+        String image3Id = UUID.randomUUID().toString();
+        String image4Id = UUID.randomUUID().toString();
+        String image5Id = UUID.randomUUID().toString();
 
         try (FileOutputStream fos = new FileOutputStream(fileLocation + "/" + image1Id)) {
             fos.write(image1);
@@ -66,6 +71,8 @@ public class AdController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Date datetime = new Date();
 
 
         Advertisement advertisement = new Advertisement(
@@ -88,6 +95,10 @@ public class AdController {
                 adRequest.getColour(),
                 adRequest.getDescription(),
                 image1Id,
+                image2Id,
+                image3Id,
+                image4Id,
+                image5Id,
                 adRequest.getFlag(),
                 user,
                 datetime
