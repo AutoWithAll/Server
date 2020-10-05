@@ -1,8 +1,11 @@
 package AutoWithAll.AutoWithAll.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -68,6 +71,22 @@ public class Advertisement {
     @NotBlank
     private String description;
 
+    @Column(name = "image1")
+    private String image1;
+
+    private byte[] image2;
+
+    private byte[] image3;
+
+    private byte[] image4;
+
+    private byte[] image5;
+
+    @Column(name = "time")
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private Date datetime;
+
     @NotNull
     private Integer falg;
 
@@ -86,7 +105,9 @@ public class Advertisement {
     public Advertisement(){}
 
 
-    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description,@NotNull Integer falg,User user) {
+
+
+    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description, String image1, @NotNull Integer falg, User user, Date datetime) {
         this.name = name;
         this.t_number = t_number;
         this.email = email;
@@ -107,6 +128,25 @@ public class Advertisement {
         this.description = description;
         this.falg = falg;
         this.user = user;
+        this.datetime = datetime;
+
+
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getImage1() {
+        return image1;
+    }
+
+    public void setImage1(String image1) {
+        this.image1 = image1;
     }
 
     public Long getId() {
