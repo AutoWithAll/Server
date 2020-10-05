@@ -38,8 +38,11 @@ public class LCompanyController {
         User user = userRepository.findById(userDetails.getId()).get();
         Advertisement advertisement = adRepository.findById(lPlanRequest.getAd_id()).get();
         LPlan lPlan = new LPlan(
-                lPlanRequest.getL_plan(),
-                lPlanRequest.getL_plan(),
+                lPlanRequest.getPlan_amount(),
+                lPlanRequest.getNo_of_installments(),
+                lPlanRequest.getInterest(),
+                lPlanRequest.getInst_amt(),
+                lPlanRequest.getDescription(),
                 user,
                 advertisement
         );
