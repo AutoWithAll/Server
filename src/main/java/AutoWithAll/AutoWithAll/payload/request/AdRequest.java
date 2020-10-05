@@ -202,16 +202,14 @@ public class AdRequest {
         return description;
     }
 
+    public void setDescription(String description){this.description = description ;}
+
     public Integer getFlag() {
         return flag;
     }
 
     public void setFlag(Integer flag) {
         this.flag = flag;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 }
