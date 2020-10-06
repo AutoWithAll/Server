@@ -20,11 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
-import java.security.Principal;
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -58,15 +54,46 @@ public class AdController {
 
         String[] images = adRequest.getImages();
         byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image2 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image3 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image4 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image5 = Base64.getDecoder().decode(images[0].split(",")[1]);
         String image1Id = UUID.randomUUID().toString();
+        String image2Id = UUID.randomUUID().toString();
+        String image3Id = UUID.randomUUID().toString();
+        String image4Id = UUID.randomUUID().toString();
+        String image5Id = UUID.randomUUID().toString();
 
-        try (FileOutputStream fos = new FileOutputStream(fileLocation + "/" + image1Id)) {
-            fos.write(image1);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        // add  5 images using object array
+        class Array{
+            protected String imageId;
+            protected byte[] image;
+
+            Array(String imageId , byte[] image){
+                this.imageId = imageId;
+                this.image = image;
+            }
         }
+        Array a1 = new Array(image1Id,image1);
+        Array a2 = new Array(image2Id,image2);
+        Array a3 = new Array(image3Id,image3);
+        Array a4 = new Array(image4Id,image4);
+        Array a5 = new Array(image5Id,image5);
+
+        Array[] img = {a1,a2,a3,a4,a5};
+
+        for ( Array i: img) {
+//            System.out.println(i.imageId);
+            try (FileOutputStream fos = new FileOutputStream(fileLocation + "/" + i.imageId)) {
+                fos.write(i.image);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
 
         Advertisement advertisement = new Advertisement(
@@ -139,6 +166,13 @@ public class AdController {
         );
 
         return reportAdDetails.saveReportAdDetails(reportAd);
+    }
+
+    @GetMapping("/countad")
+    public Long CountAd(Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        return adRepository.count(user);
     }
 
 

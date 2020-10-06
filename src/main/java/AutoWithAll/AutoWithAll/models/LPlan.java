@@ -17,10 +17,13 @@ public class LPlan {
     @NotBlank
     private String plan_amount;
 
+    @NotBlank
     private String no_of_installments;
 
+    @NotBlank
     private String interest;
 
+    @NotBlank
     private String inst_amount;
 
     private String description;
@@ -34,7 +37,7 @@ public class LPlan {
     public LPlan() {
     }
 
-    public LPlan(@NotBlank String plan_amount, String no_of_installments, String interest, String inst_amount, String description, User user, Advertisement advertisement) {
+    public LPlan(@NotBlank String plan_amount, @NotBlank String no_of_installments, @NotBlank String interest, @NotBlank String inst_amount, String description, User user, Advertisement advertisement) {
         this.plan_amount = plan_amount;
         this.no_of_installments = no_of_installments;
         this.interest = interest;
@@ -43,8 +46,6 @@ public class LPlan {
         this.user = user;
         this.advertisement = advertisement;
     }
-
-
 
     public Long getId() {
         return id;
