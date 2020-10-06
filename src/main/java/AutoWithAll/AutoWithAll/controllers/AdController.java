@@ -113,9 +113,15 @@ public class AdController {
                 .body(new InputStreamResource(file));
     }
 
-    @GetMapping("/getallad")
-    public List<Advertisement> getAllAd() {
-        return adRepository.findAll();
+    @GetMapping("/getconfrimad")
+    public List<Advertisement> getComnfirmAd() {
+
+        return adRepository.getConfirmAd();
+    }
+    @GetMapping("/getnewad")
+    public List<Advertisement> getPendingAd() {
+
+        return adRepository.getPendingAd();
     }
 
     @PostMapping("/reportad/{id}")

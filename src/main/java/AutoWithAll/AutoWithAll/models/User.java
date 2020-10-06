@@ -46,6 +46,15 @@ public class User {
     @Size(max = 120)
     private String password;
 
+    @Size(max = 120)
+    private String cName;
+
+    @Size(max = 120)
+    private String regNum;
+
+    @Size(max = 120)
+    private String address;
+
 
     @Column(name = "register_date")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -60,16 +69,18 @@ public class User {
     public User() {
     }
 
-    public User(String fname, String lname, String tnumber, String nic, String username, String password, Date date) {
+    public User(@NotBlank @Size(max = 20) String fname, @NotBlank @Size(max = 20) String lname, @NotBlank @Size(max = 12) String tnumber, @NotBlank @Size(max = 20) String nic, @NotBlank @Size(max = 50) @Email String username, @NotBlank @Size(max = 120) String password, @Size(max = 120) String cName, @Size String regNum, @Size String address, Date date) {
         this.fname = fname;
         this.lname = lname;
         this.tnumber = tnumber;
         this.nic = nic;
         this.username = username;
         this.password = password;
+        this.cName = cName;
+        this.regNum = regNum;
+        this.address = address;
         this.date = date;
     }
-
 
     public User(Long id) {
         this.id = id;
@@ -147,5 +158,29 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getcName() {
+        return cName;
+    }
+
+    public void setcName(String cName) {
+        this.cName = cName;
+    }
+
+    public String getRegNum() {
+        return regNum;
+    }
+
+    public void setRegNum(String regNum) {
+        this.regNum = regNum;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

@@ -8,8 +8,6 @@ public class IPlanRequest {
     private Long ad_id;
 
     @NotBlank
-
-
     private String plan_amt;
 
     private String no_of_installments;
@@ -19,10 +17,6 @@ public class IPlanRequest {
     private  String inst_amt;
 
     private String description;
-
-
-
-
 
     public String getPlan_amt() {
         return plan_amt;

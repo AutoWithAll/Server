@@ -9,13 +9,11 @@ import AutoWithAll.AutoWithAll.payload.response.JwtResponse;
 import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
 import AutoWithAll.AutoWithAll.repository.RoleRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
-import AutoWithAll.AutoWithAll.security.jwt.AuthEntryPointJwt;
 import AutoWithAll.AutoWithAll.security.jwt.JwtUtils;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +23,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -106,6 +103,9 @@ public class AuthController {
                 signupRequest.getNic(),
                 signupRequest.getUsername(),
                 encoder.encode(signupRequest.getPassword()),
+                signupRequest.getcName(),
+                signupRequest.getRegNum(),
+                signupRequest.getAddress(),
                 date
         );
 
@@ -158,6 +158,7 @@ public class AuthController {
 
         user.setRoles(roles);
         userRepository.save(user);
+
 
         return ResponseEntity.ok(new MessageResponse("User registered sucessfully!"));
     }
