@@ -11,13 +11,24 @@ public class LPlanRequest {
     @NotBlank
     private String plan_amount;
 
+    @NotBlank
     private String no_of_installments;
 
+    @NotBlank
     private String interest;
 
-    private String inst_amt;
+    @NotBlank
+    private String inst_amount;
 
     private String description;
+
+    public Long getAd_id() {
+        return ad_id;
+    }
+
+    public void setAd_id(Long ad_id) {
+        this.ad_id = ad_id;
+    }
 
     public String getPlan_amount() {
         return plan_amount;
@@ -43,12 +54,12 @@ public class LPlanRequest {
         this.interest = interest;
     }
 
-    public String getInst_amt() {
-        return inst_amt;
+    public String getInst_amount() {
+        return inst_amount;
     }
 
-    public void setInst_amt(String inst_amt) {
-        this.inst_amt = inst_amt;
+    public void setInst_amount(String inst_amount) {
+        this.inst_amount = inst_amount;
     }
 
     public String getDescription() {
@@ -57,13 +68,5 @@ public class LPlanRequest {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getAd_id() {
-        return ad_id;
-    }
-
-    public void setAd_id(Long ad_id) {
-        this.ad_id = ad_id;
     }
 }

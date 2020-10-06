@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.RouteMatcher;
 
-import javax.jws.soap.SOAPBinding;
+//import javax.jws.soap.SOAPBinding;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +15,7 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
 
     @Override
     Optional<Advertisement> findById(Long id);
+    boolean existsById(Long id);
 
     @Override
     List<Advertisement> findAll();
