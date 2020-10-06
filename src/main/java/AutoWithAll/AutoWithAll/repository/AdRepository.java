@@ -3,6 +3,8 @@ package AutoWithAll.AutoWithAll.repository;
 import AutoWithAll.AutoWithAll.models.Advertisement;
 import AutoWithAll.AutoWithAll.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.RouteMatcher;
 
@@ -21,4 +23,7 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
     List<Advertisement> findAll();
 
     List<Advertisement> findAllByUser(User user);
+
+    @Query(value = "SELECT count(id) FROM Advertisement where user = :user")
+    public Long count(@Param("user") User user);
 }

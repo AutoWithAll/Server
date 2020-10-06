@@ -20,7 +20,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
-import java.security.Principal;
 import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -161,6 +160,13 @@ public class AdController {
         );
 
         return reportAdDetails.saveReportAdDetails(reportAd);
+    }
+
+    @GetMapping("/countad")
+    public Long CountAd(Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        return adRepository.count(user);
     }
 
 

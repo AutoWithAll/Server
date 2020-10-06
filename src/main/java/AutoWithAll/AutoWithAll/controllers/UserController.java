@@ -29,14 +29,14 @@ public class UserController {
     @Autowired
     PasswordEncoder encoder;
     @Autowired
-    NormalUserImpl normalUserImpl;
+    NormalUserImpl normalUser;
 @GetMapping("/getallusers")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User>getAllUsers(){
     return userRepository.findAll();
 }
 
-@PutMapping("/editnomaluserprofile")
+@PutMapping("/editprofile")
 @PreAuthorize("hasRole('ROLE_USER')")
 public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest signupRequest, Authentication authentication){
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
@@ -46,7 +46,7 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
         user.setLname(signupRequest.getLname());
         user.setTnumber(signupRequest.getTnumber());
         user.setPassword(encoder.encode(signupRequest.getPassword()));
-        normalUserImpl.editNormalUserEditProfile(user);
+        normalUser.editNormalUserEditProfile(user);
         return ResponseEntity.ok(new MessageResponse("Account update sucessfully!"));
     }
     return  ResponseEntity
