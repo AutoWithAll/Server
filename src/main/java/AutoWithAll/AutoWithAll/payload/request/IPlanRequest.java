@@ -3,13 +3,12 @@ package AutoWithAll.AutoWithAll.payload.request;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class LPlanRequest {
-
+public class IPlanRequest {
     @NotNull
     private Long adId;
 
     @NotBlank
-    private String planAmount;
+    private String planAmt;
 
     @NotBlank
     private String noOfInstallments;
@@ -18,7 +17,7 @@ public class LPlanRequest {
     private String interest;
 
     @NotBlank
-    private String instAmount;
+    private String instAmt;
 
     private String description;
 
@@ -30,12 +29,12 @@ public class LPlanRequest {
         this.adId = adId;
     }
 
-    public String getPlanAmount() {
-        return planAmount;
+    public String getPlanAmt() {
+        return planAmt;
     }
 
-    public void setPlanAmount(String planAmount) {
-        this.planAmount = planAmount;
+    public void setPlanAmt(String planAmt) {
+        this.planAmt = planAmt;
     }
 
     public String getNoOfInstallments() {
@@ -54,12 +53,12 @@ public class LPlanRequest {
         this.interest = interest;
     }
 
-    public String getInstAmount() {
-        return instAmount;
+    public String getInstAmt() {
+        return instAmt;
     }
 
-    public void setInstAmount(String instAmount) {
-        this.instAmount = instAmount;
+    public void setInstAmt(String instAmt) {
+        this.instAmt = instAmt;
     }
 
     public String getDescription() {

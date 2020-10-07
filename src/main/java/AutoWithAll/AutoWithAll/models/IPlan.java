@@ -2,20 +2,17 @@ package AutoWithAll.AutoWithAll.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "lplan")
-public class LPlan {
+@Table(name = "iplan")
 
+public class IPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
-    private String planAmount;
+    private String planAmt;
 
     @NotBlank
     private String noOfInstallments;
@@ -24,24 +21,24 @@ public class LPlan {
     private String interest;
 
     @NotBlank
-    private String instAmount;
+    private String instAmt;
 
     private String description;
 
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @OneToOne
     private Advertisement advertisement;
 
-    public LPlan() {
+    public IPlan() {
     }
 
-    public LPlan(@NotBlank String planAmount, @NotBlank String noOfInstallments, @NotBlank String interest, @NotBlank String instAmount, String description, User user, Advertisement advertisement) {
-        this.planAmount = planAmount;
+    public IPlan(@NotBlank String planAmt, @NotBlank String noOfInstallments, @NotBlank String interest, @NotBlank String instAmt, String description, User user, Advertisement advertisement) {
+        this.planAmt = planAmt;
         this.noOfInstallments = noOfInstallments;
         this.interest = interest;
-        this.instAmount = instAmount;
+        this.instAmt = instAmt;
         this.description = description;
         this.user = user;
         this.advertisement = advertisement;
@@ -55,12 +52,12 @@ public class LPlan {
         this.id = id;
     }
 
-    public String getPlanAmount() {
-        return planAmount;
+    public String getPlanAmt() {
+        return planAmt;
     }
 
-    public void setPlanAmount(String planAmount) {
-        this.planAmount = planAmount;
+    public void setPlanAmt(String planAmt) {
+        this.planAmt = planAmt;
     }
 
     public String getNoOfInstallments() {
@@ -79,12 +76,12 @@ public class LPlan {
         this.interest = interest;
     }
 
-    public String getInstAmount() {
-        return instAmount;
+    public String getInstAmt() {
+        return instAmt;
     }
 
-    public void setInstAmount(String instAmount) {
-        this.instAmount = instAmount;
+    public void setInstAmt(String instAmt) {
+        this.instAmt = instAmt;
     }
 
     public String getDescription() {

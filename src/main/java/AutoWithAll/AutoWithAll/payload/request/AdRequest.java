@@ -65,6 +65,12 @@ public class AdRequest {
     @NotNull
     private Integer flag;
 
+    @NotNull
+    private Integer lStatus;
+
+    @NotNull
+    private Integer iStatus;
+
     public String[] getImages() {
         return images;
     }
@@ -214,6 +220,8 @@ public class AdRequest {
         return description;
     }
 
+    public void setDescription(String description){this.description = description ;}
+
     public Integer getFlag() {
         return flag;
     }
@@ -222,9 +230,20 @@ public class AdRequest {
         this.flag = flag;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Integer getlStatus() {
+        return lStatus;
     }
 
+    public void setlStatus(Integer lStatus) {
+        this.lStatus = lStatus;
+    }
+
+    public Integer getiStatus() {
+        return iStatus;
+    }
+
+    public void setiStatus(Integer iStatus) {
+        this.iStatus = iStatus;
+    }
 }
 
