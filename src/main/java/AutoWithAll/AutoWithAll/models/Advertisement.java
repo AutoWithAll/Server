@@ -90,6 +90,12 @@ public class Advertisement {
     @NotNull
     private Integer falg;
 
+    @NotNull
+    private Integer lStatus;
+
+    @NotNull
+    private Integer iStatus;
+
     @ManyToOne
     private User user;
 
@@ -105,7 +111,7 @@ public class Advertisement {
     public Advertisement(){}
 
 
-    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description, String image1, String image2, String image3, String image4, String image5, Date datetime, @NotNull Integer falg, User user) {
+    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description, String image1, String image2, String image3, String image4, String image5, Date datetime, @NotNull Integer falg, @NotNull Integer lStatus, @NotNull Integer iStatus, User user) {
         this.name = name;
         this.t_number = t_number;
         this.email = email;
@@ -131,6 +137,8 @@ public class Advertisement {
         this.image5 = image5;
         this.datetime = datetime;
         this.falg = falg;
+        this.lStatus = lStatus;
+        this.iStatus = iStatus;
         this.user = user;
     }
 
@@ -364,5 +372,21 @@ public class Advertisement {
 
     public void setReportAds(Set<ReportAd> reportAds) {
         this.reportAds = reportAds;
+    }
+
+    public Integer getlStatus() {
+        return lStatus;
+    }
+
+    public void setlStatus(Integer lStatus) {
+        this.lStatus = lStatus;
+    }
+
+    public Integer getiStatus() {
+        return iStatus;
+    }
+
+    public void setiStatus(Integer iStatus) {
+        this.iStatus = iStatus;
     }
 }

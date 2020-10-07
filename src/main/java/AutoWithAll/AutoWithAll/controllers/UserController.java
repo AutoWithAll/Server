@@ -37,7 +37,7 @@ public class UserController {
 }
 
 @PutMapping("/editprofile")
-@PreAuthorize("hasRole('ROLE_USER')")
+@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_LCOMPANY') or hasRole('ROLE_ICOMPANY') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
 public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest signupRequest, Authentication authentication){
     UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
     User user = userRepository.findById(userDetails.getId()).get();

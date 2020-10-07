@@ -51,7 +51,6 @@ public class AdController {
 
         Date datetime = new Date();
 
-
         String[] images = adRequest.getImages();
         byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
         byte[] image2 = Base64.getDecoder().decode(images[0].split(",")[1]);
@@ -93,9 +92,6 @@ public class AdController {
             }
         }
 
-
-
-
         Advertisement advertisement = new Advertisement(
                 adRequest.getName(),
                 adRequest.getT_number(),
@@ -122,6 +118,8 @@ public class AdController {
                 image5Id,
                 datetime,
                 adRequest.getFlag(),
+                adRequest.getlStatus(),
+                adRequest.getiStatus(),
                 user
         );
 
