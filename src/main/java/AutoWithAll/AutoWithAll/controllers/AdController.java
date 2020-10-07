@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.*;
 import java.security.Principal;
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -128,6 +125,13 @@ public class AdController {
         return adRepository.findAll();
     }
 
+    @GetMapping("/getAdById/{id}")
+    public Optional<Advertisement> gedAdById(@PathVariable Long id){
+        System.out.println(id);
+        System.out.println("get add");
+        return adRepository.findById(id);
+    }
+
     @PostMapping("/reportad/{id}")
     public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
         Advertisement advertisement = adRepository.findById(id).get();
@@ -143,6 +147,14 @@ public class AdController {
         );
 
         return reportAdDetails.saveReportAdDetails(reportAd);
+    }
+
+    @GetMapping("/getAddsByCurrentUser")
+    public List<Advertisement> GetAddsByUser(Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        return adRepository.findByUser(user);
     }
 
 
