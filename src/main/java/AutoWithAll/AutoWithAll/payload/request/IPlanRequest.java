@@ -5,44 +5,44 @@ import javax.validation.constraints.NotNull;
 
 public class IPlanRequest {
     @NotNull
-    private Long ad_id;
+    private Long adId;
 
     @NotBlank
-    private String plan_amt;
+    private String planAmt;
 
     @NotBlank
-    private String no_of_installments;
+    private String noOfInstallments;
 
     @NotBlank
     private String interest;
 
     @NotBlank
-    private String inst_amt;
+    private String instAmt;
 
     private String description;
 
-    public Long getAd_id() {
-        return ad_id;
+    public Long getAdId() {
+        return adId;
     }
 
-    public void setAd_id(Long ad_id) {
-        this.ad_id = ad_id;
+    public void setAdId(Long adId) {
+        this.adId = adId;
     }
 
-    public String getPlan_amt() {
-        return plan_amt;
+    public String getPlanAmt() {
+        return planAmt;
     }
 
-    public void setPlan_amt(String plan_amt) {
-        this.plan_amt = plan_amt;
+    public void setPlanAmt(String planAmt) {
+        this.planAmt = planAmt;
     }
 
-    public String getNo_of_installments() {
-        return no_of_installments;
+    public String getNoOfInstallments() {
+        return noOfInstallments;
     }
 
-    public void setNo_of_installments(String no_of_installments) {
-        this.no_of_installments = no_of_installments;
+    public void setNoOfInstallments(String noOfInstallments) {
+        this.noOfInstallments = noOfInstallments;
     }
 
     public String getInterest() {
@@ -53,12 +53,12 @@ public class IPlanRequest {
         this.interest = interest;
     }
 
-    public String getInst_amt() {
-        return inst_amt;
+    public String getInstAmt() {
+        return instAmt;
     }
 
-    public void setInst_amt(String inst_amt) {
-        this.inst_amt = inst_amt;
+    public void setInstAmt(String instAmt) {
+        this.instAmt = instAmt;
     }
 
     public String getDescription() {

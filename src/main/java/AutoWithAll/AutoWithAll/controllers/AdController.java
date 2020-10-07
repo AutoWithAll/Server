@@ -116,9 +116,13 @@ public class AdController {
                 adRequest.getColour(),
                 adRequest.getDescription(),
                 image1Id,
+                image2Id,
+                image3Id,
+                image4Id,
+                image5Id,
+                datetime,
                 adRequest.getFlag(),
-                user,
-                datetime
+                user
         );
 
         //return  userDetails.getUsername();

@@ -74,13 +74,13 @@ public class Advertisement {
     @Column(name = "image1")
     private String image1;
 
-    private byte[] image2;
+    private String image2;
 
-    private byte[] image3;
+    private String image3;
 
-    private byte[] image4;
+    private String image4;
 
-    private byte[] image5;
+    private String image5;
 
     @Column(name = "time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -105,9 +105,7 @@ public class Advertisement {
     public Advertisement(){}
 
 
-
-
-    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description, String image1, @NotNull Integer falg, User user, Date datetime) {
+    public Advertisement(@NotBlank String name, @NotBlank String t_number, @NotBlank String email, @NotBlank String location, @NotBlank String title, @NotBlank String price, @NotBlank String v_type, @NotBlank String manufacturer, @NotBlank String model, @NotBlank String v_condition, @NotBlank String m_year, @NotBlank String r_year, @NotBlank String mileage, @NotBlank String e_capacity, @NotBlank String transmission, @NotBlank String fuel_type, @NotBlank String colour, @NotBlank String description, String image1, String image2, String image3, String image4, String image5, Date datetime, @NotNull Integer falg, User user) {
         this.name = name;
         this.t_number = t_number;
         this.email = email;
@@ -126,11 +124,14 @@ public class Advertisement {
         this.fuel_type = fuel_type;
         this.colour = colour;
         this.description = description;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.image4 = image4;
+        this.image5 = image5;
+        this.datetime = datetime;
         this.falg = falg;
         this.user = user;
-        this.datetime = datetime;
-
-
     }
 
     public Date getDatetime() {
@@ -323,5 +324,45 @@ public class Advertisement {
 
     public void setlPlans(Set<LPlan> lPlans) {
         this.lPlans = lPlans;
+    }
+
+    public String getImage2() {
+        return image2;
+    }
+
+    public void setImage2(String image2) {
+        this.image2 = image2;
+    }
+
+    public String getImage3() {
+        return image3;
+    }
+
+    public void setImage3(String image3) {
+        this.image3 = image3;
+    }
+
+    public String getImage4() {
+        return image4;
+    }
+
+    public void setImage4(String image4) {
+        this.image4 = image4;
+    }
+
+    public String getImage5() {
+        return image5;
+    }
+
+    public void setImage5(String image5) {
+        this.image5 = image5;
+    }
+
+    public Set<ReportAd> getReportAds() {
+        return reportAds;
+    }
+
+    public void setReportAds(Set<ReportAd> reportAds) {
+        this.reportAds = reportAds;
     }
 }
