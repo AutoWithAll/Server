@@ -37,6 +37,10 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
 
     @Query(value = "select u from Advertisement u where u.falg=0")
     List<Advertisement> getPendingAd();
-    @Query(value = "SELECT count(id) FROM Advertisement where user = :user")
-    public Long count(@Param("user") User user);
+
+    @Query(value = "SELECT count(id) FROM Advertisement where user = :user and falg = 0")
+    public Long rcount(@Param("user") User user);
+
+    @Query(value = "SELECT count(id) FROM Advertisement where user = :user and falg = 1")
+    public Long pcount(@Param("user") User user);
 }

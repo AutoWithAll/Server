@@ -37,6 +37,8 @@ public class SignupRequest {
 
     private String address;
 
+    private  String imgId;
+
     public String getFname() {
         return fname;
     }
@@ -115,5 +117,13 @@ public class SignupRequest {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(String imgId) {
+        this.imgId = imgId;
     }
 }

@@ -55,6 +55,9 @@ public class User {
     @Size(max = 120)
     private String address;
 
+    @NotBlank
+    private String imgId;
+
 
     @Column(name = "register_date")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -69,7 +72,7 @@ public class User {
     public User() {
     }
 
-    public User(@NotBlank @Size(max = 20) String fname, @NotBlank @Size(max = 20) String lname, @NotBlank @Size(max = 12) String tnumber, @NotBlank @Size(max = 20) String nic, @NotBlank @Size(max = 50) @Email String username, @NotBlank @Size(max = 120) String password, @Size(max = 120) String cName, @Size String regNum, @Size String address, Date date) {
+    public User(@NotBlank @Size(max = 20) String fname, @NotBlank @Size(max = 20) String lname, @NotBlank @Size(max = 12) String tnumber, @NotBlank @Size(max = 20) String nic, @NotBlank @Size(max = 50) @Email String username, @NotBlank @Size(max = 120) String password, @Size(max = 120) String cName, @Size String regNum, @Size String address, @NotBlank String imgId , Date date) {
         this.fname = fname;
         this.lname = lname;
         this.tnumber = tnumber;
@@ -79,6 +82,7 @@ public class User {
         this.cName = cName;
         this.regNum = regNum;
         this.address = address;
+        this.imgId = imgId;
         this.date = date;
     }
 
@@ -182,5 +186,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(String imgId) {
+        this.imgId = imgId;
     }
 }

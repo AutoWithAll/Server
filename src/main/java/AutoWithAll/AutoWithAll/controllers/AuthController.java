@@ -14,6 +14,7 @@ import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,10 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -48,6 +46,7 @@ public class AuthController {
 
     @Autowired
     JwtUtils jwtUtils;
+
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -77,7 +76,8 @@ public class AuthController {
                 userDetails.getUsername(),
                 userDetails.getNic(),
                 userDetails.getDate(),
-                roles));
+                roles,
+                userDetails.getImgId()));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -106,8 +106,10 @@ public class AuthController {
                 signupRequest.getcName(),
                 signupRequest.getRegNum(),
                 signupRequest.getAddress(),
+                signupRequest.getImgId(),
                 date
         );
+        System.out.println(user.getcName());
 
         Set<String> strRoles = signupRequest.getRole();
         Set<Role> roles = new HashSet<>();

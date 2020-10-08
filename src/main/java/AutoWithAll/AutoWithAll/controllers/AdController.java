@@ -53,10 +53,10 @@ public class AdController {
 
         String[] images = adRequest.getImages();
         byte[] image1 = Base64.getDecoder().decode(images[0].split(",")[1]);
-        byte[] image2 = Base64.getDecoder().decode(images[0].split(",")[1]);
-        byte[] image3 = Base64.getDecoder().decode(images[0].split(",")[1]);
-        byte[] image4 = Base64.getDecoder().decode(images[0].split(",")[1]);
-        byte[] image5 = Base64.getDecoder().decode(images[0].split(",")[1]);
+        byte[] image2 = Base64.getDecoder().decode(images[1].split(",")[1]);
+        byte[] image3 = Base64.getDecoder().decode(images[2].split(",")[1]);
+        byte[] image4 = Base64.getDecoder().decode(images[3].split(",")[1]);
+        byte[] image5 = Base64.getDecoder().decode(images[4].split(",")[1]);
         String image1Id = UUID.randomUUID().toString();
         String image2Id = UUID.randomUUID().toString();
         String image3Id = UUID.randomUUID().toString();
@@ -79,7 +79,7 @@ public class AdController {
         Array a4 = new Array(image4Id, image4);
         Array a5 = new Array(image5Id, image5);
 
-        Array[] img = { a1, a2, a3, a4, a5 };
+        Array[] img = {a1, a2, a3, a4, a5};
 
         for (Array i : img) {
             // System.out.println(i.imageId);
@@ -154,11 +154,18 @@ public class AdController {
         return adRepository.findByUser(user);
     }
 
-    @GetMapping("/countad")
-    public Long CountAd(Authentication authentication) {
+    @GetMapping("/countremainad")
+    public Long CountremainAd(Authentication authentication) {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
-        return adRepository.count(user);
+        return adRepository.rcount(user);
+    }
+
+    @GetMapping("/countpostedad")
+    public Long CountpostedAd(Authentication authentication) {
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        return adRepository.pcount(user);
     }
 
     // @GetMapping("/")
