@@ -11,12 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,4 +48,11 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
             .badRequest()
             .body(new MessageResponse("Error: Password didn't match!"));
 }
+
+//    @GetMapping("/viewcompany/{role}")
+//    public ResponseEntity<?> viewcompany(@RequestBody SignupRequest signupRequest,@PathVariable String[] role, Authentication authentication){
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        User user = userRepository.findById(userDetails.getId()).get();
+//        return userRepository.FilterByRole(role);
+//    }
 }
