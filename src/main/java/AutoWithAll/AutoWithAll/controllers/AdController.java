@@ -11,6 +11,7 @@ import AutoWithAll.AutoWithAll.security.services.AdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.ReportAdDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,8 @@ public class AdController {
     @Autowired
     ReportAdDetailsImpl reportAdDetails;
 
-
+    @Value("${upload.location}")
+    private String fileLocation;
 
     @PostMapping("/postadd")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
@@ -69,7 +71,7 @@ public class AdController {
         return adDetails.saveAdDetails(advertisement);
     }
 
-    @GetMapping("/getallad")
+    @GetMapping("/getconfrimad")
     public List<Advertisement>getAllAd(){
         return adRepository.findAll();
     }
