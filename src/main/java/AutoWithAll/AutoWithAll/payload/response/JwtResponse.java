@@ -1,28 +1,35 @@
 package AutoWithAll.AutoWithAll.payload.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.List;
+import java.util.Date;
 
 public class JwtResponse {
     private String token;
-    private String type ="Bearer";
+    private String type = "Bearer";
     private Long id;
     private String fname;
     private String lname;
     private String tnumber;
     private String username;
     private String nic;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date date;
     private List<String> roles;
 
-    public JwtResponse(String accessToken,Long id,String fname,String lname,String tnumber,String username,String nic,List<String> roles){
-        this.token=accessToken;
-        this.id=id;
-        this.fname=fname;
-        this.lname=lname;
-        this.tnumber=tnumber;
-        this.username=username;
-        this.nic=nic;
-        this.roles=roles;
+    public JwtResponse(String accessToken, Long id, String fname, String lname, String tnumber, String username, String nic, Date date, List<String> roles) {
+        this.token = accessToken;
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.tnumber = tnumber;
+        this.username = username;
+        this.nic = nic;
+        this.date = date;
+        this.roles = roles;
     }
+
 
     public String getToken() {
         return token;
@@ -86,6 +93,14 @@ public class JwtResponse {
 
     public void setNic(String nic) {
         this.nic = nic;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public List<String> getRoles() {

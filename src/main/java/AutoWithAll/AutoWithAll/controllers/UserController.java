@@ -22,8 +22,6 @@ public class UserController {
 @GetMapping("/getallusers")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User>getAllUsers(){
-//    UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
-//    User user = userRepository.findById(userDetails.getId()).get();
     return userRepository.findAll();
 }
 }
