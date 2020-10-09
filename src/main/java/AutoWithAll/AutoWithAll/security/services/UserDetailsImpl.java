@@ -25,6 +25,9 @@ public class UserDetailsImpl implements UserDetails {
     private String nic;
     private Date date;
     private String imgId;
+    private String cName;
+    private String address;
+    private String regNum;
 
     @JsonIgnore
     private String password;
@@ -41,7 +44,7 @@ public class UserDetailsImpl implements UserDetails {
 //        this.authorities=authorities;
 //    }
 
-    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Date date, String imgId ,String password,Collection<?extends  GrantedAuthority>authorities){
+    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Date date, String imgId, String cName, String address, String regNum ,String password,Collection<?extends  GrantedAuthority>authorities){
         this.id=id;
         this.fname=fname;
         this.lname=lname;
@@ -50,6 +53,9 @@ public class UserDetailsImpl implements UserDetails {
         this.username=username;
         this.date = date;
         this.imgId = imgId;
+        this.cName = cName;
+        this.address = address;
+        this.regNum = regNum;
         this.password=password;
         this.authorities=authorities;
     }
@@ -68,6 +74,9 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getDate(),
                 user.getImgId(),
+                user.getcName(),
+                user.getAddress(),
+                user.getRegNum(),
                 user.getPassword(),
                 authorities);
     }
@@ -102,6 +111,18 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getNic() {
         return nic;
+    }
+
+    public String getcName() {
+        return cName;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getRegNum() {
+        return regNum;
     }
 
     @Override
