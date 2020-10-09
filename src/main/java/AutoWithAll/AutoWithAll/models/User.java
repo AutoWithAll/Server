@@ -55,7 +55,7 @@ public class User {
     @Size(max = 120)
     private String address;
 
-    @NotBlank
+    //@NotBlank
     private String imgId;
 
 
