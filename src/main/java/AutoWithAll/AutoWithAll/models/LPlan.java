@@ -15,16 +15,16 @@ public class LPlan {
     private Long id;
 
     @NotBlank
-    private String plan_amount;
+    private String planAmount;
 
     @NotBlank
-    private String no_of_installments;
+    private String noOfInstallments;
 
     @NotBlank
     private String interest;
 
     @NotBlank
-    private String inst_amount;
+    private String instAmount;
 
     private String description;
 
@@ -37,11 +37,11 @@ public class LPlan {
     public LPlan() {
     }
 
-    public LPlan(@NotBlank String plan_amount, @NotBlank String no_of_installments, @NotBlank String interest, @NotBlank String inst_amount, String description, User user, Advertisement advertisement) {
-        this.plan_amount = plan_amount;
-        this.no_of_installments = no_of_installments;
+    public LPlan(@NotBlank String planAmount, @NotBlank String noOfInstallments, @NotBlank String interest, @NotBlank String instAmount, String description, User user, Advertisement advertisement) {
+        this.planAmount = planAmount;
+        this.noOfInstallments = noOfInstallments;
         this.interest = interest;
-        this.inst_amount = inst_amount;
+        this.instAmount = instAmount;
         this.description = description;
         this.user = user;
         this.advertisement = advertisement;
@@ -55,20 +55,20 @@ public class LPlan {
         this.id = id;
     }
 
-    public String getPlan_amount() {
-        return plan_amount;
+    public String getPlanAmount() {
+        return planAmount;
     }
 
-    public void setPlan_amount(String plan_amount) {
-        this.plan_amount = plan_amount;
+    public void setPlanAmount(String planAmount) {
+        this.planAmount = planAmount;
     }
 
-    public String getNo_of_installments() {
-        return no_of_installments;
+    public String getNoOfInstallments() {
+        return noOfInstallments;
     }
 
-    public void setNo_of_installments(String no_of_installments) {
-        this.no_of_installments = no_of_installments;
+    public void setNoOfInstallments(String noOfInstallments) {
+        this.noOfInstallments = noOfInstallments;
     }
 
     public String getInterest() {
@@ -79,12 +79,12 @@ public class LPlan {
         this.interest = interest;
     }
 
-    public String getInst_amount() {
-        return inst_amount;
+    public String getInstAmount() {
+        return instAmount;
     }
 
-    public void setInst_amount(String inst_amount) {
-        this.inst_amount = inst_amount;
+    public void setInstAmount(String instAmount) {
+        this.instAmount = instAmount;
     }
 
     public String getDescription() {

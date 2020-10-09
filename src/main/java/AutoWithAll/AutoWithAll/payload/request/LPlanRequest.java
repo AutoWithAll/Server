@@ -6,44 +6,44 @@ import javax.validation.constraints.NotNull;
 public class LPlanRequest {
 
     @NotNull
-    private Long ad_id;
+    private Long adId;
 
     @NotBlank
-    private String plan_amount;
+    private String planAmount;
 
     @NotBlank
-    private String no_of_installments;
+    private String noOfInstallments;
 
     @NotBlank
     private String interest;
 
     @NotBlank
-    private String inst_amount;
+    private String instAmount;
 
     private String description;
 
-    public Long getAd_id() {
-        return ad_id;
+    public Long getAdId() {
+        return adId;
     }
 
-    public void setAd_id(Long ad_id) {
-        this.ad_id = ad_id;
+    public void setAdId(Long adId) {
+        this.adId = adId;
     }
 
-    public String getPlan_amount() {
-        return plan_amount;
+    public String getPlanAmount() {
+        return planAmount;
     }
 
-    public void setPlan_amount(String plan_amount) {
-        this.plan_amount = plan_amount;
+    public void setPlanAmount(String planAmount) {
+        this.planAmount = planAmount;
     }
 
-    public String getNo_of_installments() {
-        return no_of_installments;
+    public String getNoOfInstallments() {
+        return noOfInstallments;
     }
 
-    public void setNo_of_installments(String no_of_installments) {
-        this.no_of_installments = no_of_installments;
+    public void setNoOfInstallments(String noOfInstallments) {
+        this.noOfInstallments = noOfInstallments;
     }
 
     public String getInterest() {
@@ -54,12 +54,12 @@ public class LPlanRequest {
         this.interest = interest;
     }
 
-    public String getInst_amount() {
-        return inst_amount;
+    public String getInstAmount() {
+        return instAmount;
     }
 
-    public void setInst_amount(String inst_amount) {
-        this.inst_amount = inst_amount;
+    public void setInstAmount(String instAmount) {
+        this.instAmount = instAmount;
     }
 
     public String getDescription() {

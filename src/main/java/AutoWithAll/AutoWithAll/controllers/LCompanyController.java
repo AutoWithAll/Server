@@ -38,13 +38,13 @@ public class LCompanyController {
     public ResponseEntity<?> lPlanPost(@RequestBody LPlanRequest lPlanRequest , Authentication authentication){
         UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
-        Advertisement advertisement = adRepository.findById(lPlanRequest.getAd_id()).get();
-        if(adRepository.existsById(lPlanRequest.getAd_id())){
+        Advertisement advertisement = adRepository.findById(lPlanRequest.getAdId()).get();
+        if(adRepository.existsById(lPlanRequest.getAdId())){
         LPlan lPlan = new LPlan(
-                lPlanRequest.getPlan_amount(),
-                lPlanRequest.getNo_of_installments(),
+                lPlanRequest.getPlanAmount(),
+                lPlanRequest.getNoOfInstallments(),
                 lPlanRequest.getInterest(),
-                lPlanRequest.getInst_amount(),
+                lPlanRequest.getInstAmount(),
                 lPlanRequest.getDescription(),
                 user,
                 advertisement

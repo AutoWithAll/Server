@@ -40,13 +40,13 @@ public class ICompanyController {
     public ResponseEntity<?> iPlanPost(@RequestBody IPlanRequest iPlanRequest , Authentication authentication){
         UserDetailsImpl userDetails=(UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
-        Advertisement advertisement = adRepository.findById(iPlanRequest.getAd_id()).get();
-        if(adRepository.existsById(iPlanRequest.getAd_id())){
+        Advertisement advertisement = adRepository.findById(iPlanRequest.getAdId()).get();
+        if(adRepository.existsById(iPlanRequest.getAdId())){
         IPlan iPlan = new IPlan(
-                iPlanRequest.getPlan_amt(),
-                 iPlanRequest.getNo_of_installments(),
+                iPlanRequest.getPlanAmt(),
+                 iPlanRequest.getNoOfInstallments(),
                  iPlanRequest.getInterest(),
-                 iPlanRequest.getInst_amt(),
+                 iPlanRequest.getInstAmt(),
                  iPlanRequest.getDescription(),
                  user,
                  advertisement
