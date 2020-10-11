@@ -14,15 +14,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     @Override
     Optional<User> findById(Long aLong);
-
     boolean existsByUsername(String username);
-//    boolean existsByEmail(String username);
     boolean existsByNic(String nic);
     @Override
     List<User> findAll();
 
-    //@Query("select count (us.id) from user us")
-    //List<Integer> getUserCount();
 
 
 }

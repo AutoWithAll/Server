@@ -17,8 +17,9 @@ public class JwtResponse {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private List<String> roles;
+    private String imgId;
 
-    public JwtResponse(String accessToken, Long id, String fname, String lname, String tnumber, String username, String nic, Date date, List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String fname, String lname, String tnumber, String username, String nic, Date date, List<String> roles, String imgId) {
         this.token = accessToken;
         this.id = id;
         this.fname = fname;
@@ -28,6 +29,7 @@ public class JwtResponse {
         this.nic = nic;
         this.date = date;
         this.roles = roles;
+        this.imgId = imgId;
     }
 
 
@@ -109,5 +111,13 @@ public class JwtResponse {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public String getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(String imgId) {
+        this.imgId = imgId;
     }
 }

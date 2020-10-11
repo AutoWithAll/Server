@@ -12,33 +12,33 @@ public class IPlan {
     private Long id;
 
     @NotBlank
+    private String planAmt;
 
+    @NotBlank
+    private String noOfInstallments;
 
-    private String plan_amt;
-
-    private String no_of_installments;
-
+    @NotBlank
     private String interest;
 
-    private String inst_amt;
+    @NotBlank
+    private String instAmt;
 
     private String description;
 
     @ManyToOne
     private User user;
 
-    @ManyToOne
+    @OneToOne
     private Advertisement advertisement;
 
     public IPlan() {
     }
 
-
-    public IPlan(@NotBlank String plan_amt, String no_of_installments, String interest, String inst_amt, String description, User user, Advertisement advertisement) {
-        this.plan_amt = plan_amt;
-        this.no_of_installments = no_of_installments;
+    public IPlan(@NotBlank String planAmt, @NotBlank String noOfInstallments, @NotBlank String interest, @NotBlank String instAmt, String description, User user, Advertisement advertisement) {
+        this.planAmt = planAmt;
+        this.noOfInstallments = noOfInstallments;
         this.interest = interest;
-        this.inst_amt = inst_amt;
+        this.instAmt = instAmt;
         this.description = description;
         this.user = user;
         this.advertisement = advertisement;
@@ -52,25 +52,37 @@ public class IPlan {
         this.id = id;
     }
 
-    public String getPlan_amt() {
-        return plan_amt;
+    public String getPlanAmt() {
+        return planAmt;
     }
 
-    public void setPlan_amt(String plan_amt) {
-        this.plan_amt = plan_amt;
+    public void setPlanAmt(String planAmt) {
+        this.planAmt = planAmt;
     }
 
-    public String getNo_of_installments() { return no_of_installments; }
+    public String getNoOfInstallments() {
+        return noOfInstallments;
+    }
 
-    public void setNo_of_installments(String no_of_installments) { this.no_of_installments = no_of_installments; }
+    public void setNoOfInstallments(String noOfInstallments) {
+        this.noOfInstallments = noOfInstallments;
+    }
 
-    public String getInterest() { return interest; }
+    public String getInterest() {
+        return interest;
+    }
 
-    public void setInterest(String interest) { this.interest = interest; }
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
 
-    public String getInst_amt() { return inst_amt; }
+    public String getInstAmt() {
+        return instAmt;
+    }
 
-    public void setInst_amt(String inst_amt) { this.inst_amt = inst_amt; }
+    public void setInstAmt(String instAmt) {
+        this.instAmt = instAmt;
+    }
 
     public String getDescription() {
         return description;
