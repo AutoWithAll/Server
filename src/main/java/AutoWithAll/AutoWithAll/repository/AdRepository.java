@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.RouteMatcher;
 
-//import javax.jws.soap.SOAPBinding;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +23,7 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
 
     @Override
     List<Advertisement> findAll();
+
 
 
     List<Advertisement> findByUser(User user);
@@ -43,4 +44,5 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
 
     @Query(value = "SELECT count(id) FROM Advertisement where user = :user and falg = 1")
     public Long pcount(@Param("user") User user);
+
 }
