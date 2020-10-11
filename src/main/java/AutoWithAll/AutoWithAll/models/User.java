@@ -55,7 +55,7 @@ public class User {
     @Size(max = 120)
     private String address;
 
-    @NotBlank
+    //@NotBlank
     private String imgId;
 
 
@@ -86,18 +86,6 @@ public class User {
         this.date = date;
     }
 
-    public User(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Long getId() {
         return id;
     }
@@ -110,21 +98,12 @@ public class User {
         return fname;
     }
 
-
     public void setFname(String fname) {
         this.fname = fname;
     }
 
     public String getLname() {
         return lname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setLname(String lname) {
@@ -147,6 +126,13 @@ public class User {
         this.nic = nic;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getPassword() {
         return password;
@@ -154,14 +140,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
     }
 
     public String getcName() {
@@ -194,5 +172,21 @@ public class User {
 
     public void setImgId(String imgId) {
         this.imgId = imgId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

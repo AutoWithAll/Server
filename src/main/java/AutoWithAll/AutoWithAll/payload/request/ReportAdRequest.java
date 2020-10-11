@@ -1,6 +1,7 @@
 package AutoWithAll.AutoWithAll.payload.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ReportAdRequest {
 
@@ -22,6 +23,7 @@ public class ReportAdRequest {
     @NotBlank
     private String message;
 
+    @NotNull
     private  Long ad_id;
 
     public Long getAd_id() {

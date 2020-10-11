@@ -1,5 +1,6 @@
 package AutoWithAll.AutoWithAll.controllers;
 
+import AutoWithAll.AutoWithAll.models.Role;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.SignupRequest;
 import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
@@ -111,6 +112,11 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         return  userRepository.findById(userDetails.getId()).get();
     }
+
+//    @GetMapping("/getallleasing")
+//    public List<User> getLCompant(){
+//        return userRepository.getAllLCompany();
+//    }
 
 
 
