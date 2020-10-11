@@ -5,6 +5,7 @@ import AutoWithAll.AutoWithAll.models.Role;
 import AutoWithAll.AutoWithAll.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,5 +26,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 //    @Query(value = "Select u FROM Role u where u.id = 4 ")
 //    List<User> getAllLCompany();
 
+    @Query(value = "SELECT u FROM User u where u.roles = :roles")
+    List<User> FilterByRole(@Param("roles") String[] roles);
 
 }

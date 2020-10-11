@@ -57,6 +57,14 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
 
 }
 
+
+//    @GetMapping("/viewcompany/{role}")
+//    public ResponseEntity<?> viewcompany(@RequestBody SignupRequest signupRequest,@PathVariable String[] role, Authentication authentication){
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        User user = userRepository.findById(userDetails.getId()).get();
+//        return userRepository.FilterByRole(role);
+//    }
+
     @PutMapping("/changepassword/{password}")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_LCOMPANY') or hasRole('ROLE_ICOMPANY') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
     public ResponseEntity<?> editPasswordProfile(@RequestBody SignupRequest signupRequest, @PathVariable String password , Authentication authentication){
@@ -117,6 +125,7 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
 //    public List<User> getLCompant(){
 //        return userRepository.getAllLCompany();
 //    }
+
 
 
 
