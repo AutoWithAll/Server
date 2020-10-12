@@ -22,9 +22,10 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.util.*;
 
+//Annotation for mapping web requests onto methods in request-handling classes with flexible method signatures.
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/advertisement") //Annotation for mapping web requests onto methods in request-handling classes with flexible method signatures.
+@RequestMapping("/advertisement")
 public class AdController {
 
     @Autowired
