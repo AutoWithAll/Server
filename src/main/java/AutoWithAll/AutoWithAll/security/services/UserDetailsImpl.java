@@ -24,6 +24,7 @@ public class UserDetailsImpl implements UserDetails {
     private String tnumber;
     private String nic;
     private Date date;
+    private String imgId;
 
     @JsonIgnore
     private String password;
@@ -40,7 +41,7 @@ public class UserDetailsImpl implements UserDetails {
 //        this.authorities=authorities;
 //    }
 
-    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Date date,String password,Collection<?extends  GrantedAuthority>authorities){
+    public UserDetailsImpl(Long id,String fname,String lname,String tnumber,String nic,String username,Date date, String imgId ,String password,Collection<?extends  GrantedAuthority>authorities){
         this.id=id;
         this.fname=fname;
         this.lname=lname;
@@ -48,6 +49,7 @@ public class UserDetailsImpl implements UserDetails {
         this.nic=nic;
         this.username=username;
         this.date = date;
+        this.imgId = imgId;
         this.password=password;
         this.authorities=authorities;
     }
@@ -65,6 +67,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getNic(),
                 user.getUsername(),
                 user.getDate(),
+                user.getImgId(),
                 user.getPassword(),
                 authorities);
     }
@@ -111,6 +114,10 @@ public class UserDetailsImpl implements UserDetails {
         return password;
     }
 
+    public String getImgId() {
+        return imgId;
+    }
+
     @Override
     public boolean isAccountNonExpired(){
         return true;
@@ -125,6 +132,8 @@ public class UserDetailsImpl implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
+
 
     @Override
     public boolean isEnabled() {

@@ -1,16 +1,22 @@
 package AutoWithAll.AutoWithAll.security.services;
-import AutoWithAll.AutoWithAll.models.Test;
-import AutoWithAll.AutoWithAll.models.User;
-import AutoWithAll.AutoWithAll.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import AutoWithAll.AutoWithAll.models.User;
+import AutoWithAll.AutoWithAll.repository.UserRepository;
+
+/**
+ * NormalUserImpl
+ */
 @Service
-public class AdminDetailsImpl {
+public class NormalUserImpl {
     @Autowired
     private UserRepository userRepository;
-    public User editAdminDetails(User user){
+
+    public User editNormalUserEditProfile(User user){
         System.out.println(user.getFname());
         return userRepository.save(user);
     }
+    
 }
