@@ -24,7 +24,7 @@ import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/advertisement")
+@RequestMapping("/advertisement") //Annotation for mapping web requests onto methods in request-handling classes with flexible method signatures.
 public class AdController {
 
     @Autowired
@@ -104,6 +104,7 @@ public class AdController {
         return adDetails.saveAdDetails(advertisement);
     }
 
+    //Annotation for mapping HTTP GET requests onto specific handler methods.
     @GetMapping("/getimage/{id}")
     public ResponseEntity<InputStreamResource> getAddImage(@PathVariable String id) {
         FileInputStream file = null;
@@ -135,6 +136,7 @@ public class AdController {
         return adRepository.findById(id);
     }
 
+    //Annotation for mapping HTTP POST requests onto specific handler methods.
     @PostMapping("/reportad/{id}")
     public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
         Advertisement advertisement = adRepository.findById(id).get();
