@@ -41,6 +41,7 @@ public class AdminController {
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public ResponseEntity<?>confrimAd(@PathVariable Long adId){
     Advertisement advertisement=adRepository.findById(adId).get();
+    System.out.println(advertisement.getFalg());
     if(advertisement.getFalg()==0){
         advertisement.setFalg(1);
         adRepository.save(advertisement);

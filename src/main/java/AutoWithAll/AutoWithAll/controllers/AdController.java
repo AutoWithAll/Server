@@ -39,7 +39,7 @@ public class AdController {
     @Autowired
     ReportAdDetailsImpl reportAdDetails;
 
-    @Value("${upload.location}")
+    @Value("${upload.location}/")
     private String fileLocation;
 
     // @CrossOrigin(origins = "http://localhost:4200")
