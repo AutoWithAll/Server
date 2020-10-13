@@ -45,7 +45,6 @@ public class AdminController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/getallagents")
     public List<User> getAgentsWithRole(){
         Role role=roleRepository.findByName(ERole.ROLE_AGENT).get();
