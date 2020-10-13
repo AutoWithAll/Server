@@ -42,7 +42,9 @@ public class AdController {
     @Value("${upload.location}")
     private String fileLocation;
 
-    // @CrossOrigin(origins = "http://localhost:4200")
+
+    @CrossOrigin(origins = "http://localhost:4200")
+
     @PostMapping("/postadd")
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN') or hasRole('ROLE_AGENT')")
     public Advertisement AddPost(@RequestBody AdRequest adRequest, Authentication authentication) {
@@ -104,6 +106,7 @@ public class AdController {
         return adDetails.saveAdDetails(advertisement);
     }
 
+    
     @GetMapping("/getimage/{id}")
     public ResponseEntity<InputStreamResource> getAddImage(@PathVariable String id) {
         FileInputStream file = null;
@@ -128,6 +131,10 @@ public class AdController {
         return adRepository.getPendingAd();
     }
 
+//    @GetMapping("/getconfrimad")
+//    public List<Advertisement> getAllAd() {
+//        return adRepository.findAll();
+//    }
     @GetMapping("/getAdById/{id}")
     public Optional<Advertisement> gedAdById(@PathVariable Long id) {
         System.out.println(id);

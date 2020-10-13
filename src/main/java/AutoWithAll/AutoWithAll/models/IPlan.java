@@ -1,5 +1,7 @@
 package AutoWithAll.AutoWithAll.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -28,7 +30,8 @@ public class IPlan {
     @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
+    @JsonBackReference
     private Advertisement advertisement;
 
     public IPlan() {

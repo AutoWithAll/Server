@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/icompany")
@@ -33,6 +35,8 @@ public class ICompanyController {
 
     @Autowired
     AdRepository adRepository;
+
+
 
     @PostMapping("/postiplan")
     @PreAuthorize("hasRole('ROLE_ICOMPANY')")
@@ -58,5 +62,22 @@ public class ICompanyController {
                     .badRequest()
                     .body(new MessageResponse("Error: Invalid Advertisment Id!"));
         }
+    }
+
+    @GetMapping("/getadconfrim")
+    @PreAuthorize("hasRole('ROLE_ICOMPANY')")
+    public List<Advertisement> getConfrimad(Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        return adRepository.getConfrimAd(user.getId());
+    }
+
+    @GetMapping("/getpendingad")
+    @PreAuthorize("hasRole('ROLE_ICOMPANY')")
+    public List<Advertisement> getPending(Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        System.out.println(user.getId());
+        return adRepository.getPendingAd(user.getId());
     }
 }

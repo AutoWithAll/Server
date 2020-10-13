@@ -1,6 +1,18 @@
 package AutoWithAll.AutoWithAll.controllers;
 
+
 import AutoWithAll.AutoWithAll.models.*;
+
+import AutoWithAll.AutoWithAll.models.Advertisement;
+import AutoWithAll.AutoWithAll.models.PackagePurchase;
+import AutoWithAll.AutoWithAll.models.Packages;
+import AutoWithAll.AutoWithAll.models.User;
+import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
+
+import AutoWithAll.AutoWithAll.repository.AdRepository;
+import AutoWithAll.AutoWithAll.repository.UserRepository;
+import AutoWithAll.AutoWithAll.security.services.*;
+
 import AutoWithAll.AutoWithAll.payload.request.PackagePurchaseRequest;
 import AutoWithAll.AutoWithAll.repository.*;
 import AutoWithAll.AutoWithAll.payload.request.SignupRequest;
@@ -58,7 +70,6 @@ public class AgentController {
         User user = userRepository.findById(userDetails.getId()).get();
         System.out.println(user.getId());
         return adRepository.findAllByUser(user);
-
     }
     @PostMapping("/packagepurchase/{pkgId}")
     @PreAuthorize("hasRole('ROLE_AGENT')")
