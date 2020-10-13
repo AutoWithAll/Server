@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class PackagesPurchaseDetailsImpl {
  @Autowired
  PackagesPurchaseRepository packagesPurchaseRepository;
+
  public PackagePurchase savePackagesPurchase(PackagePurchase packagePurchase){
      return packagesPurchaseRepository.save(packagePurchase);
  }

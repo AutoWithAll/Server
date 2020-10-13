@@ -1,21 +1,17 @@
 package AutoWithAll.AutoWithAll.controllers;
 
-import AutoWithAll.AutoWithAll.models.Advertisement;
-import AutoWithAll.AutoWithAll.models.PackagePurchase;
-import AutoWithAll.AutoWithAll.models.Packages;
-import AutoWithAll.AutoWithAll.models.User;
+import AutoWithAll.AutoWithAll.models.*;
 import AutoWithAll.AutoWithAll.payload.request.PackagePurchaseRequest;
-import AutoWithAll.AutoWithAll.repository.PackagesPurchaseRepository;
-import AutoWithAll.AutoWithAll.repository.PackagesRepository;
+import AutoWithAll.AutoWithAll.repository.*;
 import AutoWithAll.AutoWithAll.payload.request.SignupRequest;
 import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
-import AutoWithAll.AutoWithAll.repository.AdRepository;
-import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.NormalUserImpl;
 import AutoWithAll.AutoWithAll.security.services.PackagesDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.PackagesPurchaseDetailsImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
+import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -33,6 +29,9 @@ public class AgentController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository userRoles;
 
     @Autowired
     AdRepository adRepository;
@@ -105,5 +104,33 @@ public class AgentController {
     }
 
 
+
+    @GetMapping("/isnewagent")
+    @PreAuthorize("hasRole('ROLE_AGENT')")
+    public Optional <Boolean> IsNewAgent( Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+
+        return packagesPurchaseRepository.findByUser(user);
+    }
+
+//    @GetMapping("/isactive")
+//    public ResponseEntity<Boolean> isActive(Authentication authentication){
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        User user = userRepository.findById(userDetails.getId()).get();
+//
+//        Integer currentCount = this.packagesPurchaseRepository.findByUserAndCurrentAdCount(user);
+//        System.out.println(currentCount);
+//        return ResponseEntity.ok(true);
+////        Optional <Boolean> isActive = this.packagesPurchaseRepository.findByUser(user);
+////        if(this.packagesPurchaseRepository.findByUser(user) != null){
+////            return ResponseEntity.ok(true);
+////        }
+////        return ResponseEntity.badRequest().body(false);
+//    }
+    @GetMapping("/getallagent")
+    public List <Role> getAgents(Authentication authentication){
+        return userRoles.findAllByName(ERole.ROLE_AGENT);
+    }
 
 }

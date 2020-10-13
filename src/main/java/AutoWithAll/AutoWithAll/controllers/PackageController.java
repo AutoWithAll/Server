@@ -12,6 +12,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/package")
@@ -22,6 +24,7 @@ public class PackageController {
     UserRepository userRepository;
     @Autowired
     PackagesDetailsImpl packagesDetails;
+
 
     @PostMapping("/addpackage")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -36,4 +39,12 @@ public class PackageController {
         packagesDetails.savePackages(packages);
         return ResponseEntity.ok(new MessageResponse("Package Add Succeefully!"));
     }
+
+    @GetMapping("/packsDetails/{id}")
+    @PreAuthorize("hasRole('ROLE_AGENT')")
+    public Optional <Packages> PackDetails (@PathVariable Long id , Authentication authentication){
+       return this.packagesDetails.findByPkgId(id);
+    }
+
+
 }

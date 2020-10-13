@@ -24,4 +24,5 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Query(value = "SELECT u FROM User u where u.roles = :roles")
     List<User> FilterByRole(@Param("roles") String[] roles);
 
+
 }
