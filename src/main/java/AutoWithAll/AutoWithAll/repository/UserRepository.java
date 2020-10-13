@@ -26,7 +26,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 //    @Query(value = "Select u FROM Role u where u.id = 4 ")
 //    List<User> getAllLCompany();
 
-    @Query(value = "SELECT u FROM User u where u.roles = :roles")
-    List<User> FilterByRole(@Param("roles") String[] roles);
+//    @Query(value = "SELECT u FROM User u where u.roles = :roles")
+//    List<User> FilterByRole(@Param("roles") String[] roles);
+
+    List<User> findAllByRolesContaining(Role role);
 
 }

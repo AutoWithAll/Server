@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/icompany")
@@ -59,4 +61,12 @@ public class ICompanyController {
                     .body(new MessageResponse("Error: Invalid Advertisment Id!"));
         }
     }
+
+//    @GetMapping("/getlplanaddad")
+//    @PreAuthorize("hasRole('ROLE_ICOMPANY')")
+//    public List<Advertisement> getad(Authentication authentication){
+//        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+//        User user = userRepository.findById(userDetails.getId()).get();
+//        return iPlanRepository.findAllByUserAndAdvertisement(user);
+//    }
 }

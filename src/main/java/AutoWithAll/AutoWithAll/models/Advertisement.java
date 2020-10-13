@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -98,6 +99,9 @@ public class Advertisement {
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "advertisement")
+    private List<IPlan> iPlan;
 
     @OneToMany(mappedBy = "advertisement")
     Set<ReportAd> reportAds;

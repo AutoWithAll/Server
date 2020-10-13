@@ -28,7 +28,7 @@ public class IPlan {
     @ManyToOne
     private User user;
 
-    @OneToOne
+    @ManyToOne
     private Advertisement advertisement;
 
     public IPlan() {

@@ -1,9 +1,11 @@
 package AutoWithAll.AutoWithAll.controllers;
 
+import AutoWithAll.AutoWithAll.models.ERole;
 import AutoWithAll.AutoWithAll.models.Role;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.SignupRequest;
 import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
+import AutoWithAll.AutoWithAll.repository.RoleRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.NormalUserImpl;
 import AutoWithAll.AutoWithAll.security.services.UserDetailsImpl;
@@ -28,6 +30,10 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
     @Autowired
     PasswordEncoder encoder;
     @Autowired
@@ -125,8 +131,5 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
 //    public List<User> getLCompant(){
 //        return userRepository.getAllLCompany();
 //    }
-
-
-
 
 }
