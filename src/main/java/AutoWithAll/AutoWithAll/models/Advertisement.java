@@ -1,6 +1,8 @@
 package AutoWithAll.AutoWithAll.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -101,6 +103,7 @@ public class Advertisement {
     private User user;
 
     @OneToMany(mappedBy = "advertisement")
+    @JsonManagedReference
     private List<IPlan> iPlan;
 
     @OneToMany(mappedBy = "advertisement")
@@ -392,5 +395,21 @@ public class Advertisement {
 
     public void setiStatus(Integer iStatus) {
         this.iStatus = iStatus;
+    }
+
+    public Date getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(Date datetime) {
+        this.datetime = datetime;
+    }
+
+    public List<IPlan> getiPlan() {
+        return iPlan;
+    }
+
+    public void setiPlan(List<IPlan> iPlan) {
+        this.iPlan = iPlan;
     }
 }

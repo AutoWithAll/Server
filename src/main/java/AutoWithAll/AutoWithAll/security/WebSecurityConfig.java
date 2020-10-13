@@ -104,6 +104,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/api/test/**").permitAll()
                     .antMatchers("/advertisement/**").permitAll()
                     .antMatchers("/admin/getallagents").permitAll()
+                .antMatchers("/user/getlplan/**").permitAll()
+                .antMatchers("/user/getiplan/**").permitAll()
 //                .antMatchers("/api/test/**").hasAnyRole("ROLE_AGENT","AGENT")
                 .anyRequest().authenticated();
 

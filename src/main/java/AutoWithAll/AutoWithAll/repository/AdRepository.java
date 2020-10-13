@@ -45,4 +45,10 @@ public interface AdRepository extends JpaRepository<Advertisement,Long> {
     @Query(value = "SELECT count(id) FROM Advertisement where user = :user and falg = 1")
     public Long pcount(@Param("user") User user);
 
+    @Query(value = "SELECT a FROM Advertisement a WHERE a.user.id = :uid and a.id NOT IN (SELECT l.advertisement.id FROM IPlan l WHERE l.user.id = :uid)")
+    List<Advertisement> getPendingAd(@Param("uid") Long uid);
+
+    @Query(value = "SELECT a FROM Advertisement a WHERE a.user.id = :uid  and a.id  IN (SELECT l.advertisement.id FROM IPlan l WHERE l.user.id = :uid)")
+    List<Advertisement> getConfrimAd(@Param("uid") Long uid);
+
 }

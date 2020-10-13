@@ -1,10 +1,10 @@
 package AutoWithAll.AutoWithAll.controllers;
 
-import AutoWithAll.AutoWithAll.models.ERole;
-import AutoWithAll.AutoWithAll.models.Role;
-import AutoWithAll.AutoWithAll.models.User;
+import AutoWithAll.AutoWithAll.models.*;
 import AutoWithAll.AutoWithAll.payload.request.SignupRequest;
 import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
+import AutoWithAll.AutoWithAll.repository.IPlanRepository;
+import AutoWithAll.AutoWithAll.repository.LPlanRepository;
 import AutoWithAll.AutoWithAll.repository.RoleRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.NormalUserImpl;
@@ -41,6 +41,12 @@ public class UserController {
 
     @Value("${upload.location}")
     private String fileLocation;
+
+    @Autowired
+    LPlanRepository lPlanRepository;
+
+    @Autowired
+    IPlanRepository iPlanRepository;
 
 @GetMapping("/getallusers")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -131,5 +137,15 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
 //    public List<User> getLCompant(){
 //        return userRepository.getAllLCompany();
 //    }
+    @GetMapping("/getlplan/{adid}")
+    public List<LPlan> getLPlan(@PathVariable Long adId){
+    return lPlanRepository.findAllByAdvertisement_Id(adId);
+    }
+
+    @GetMapping("/getiplan/{adId}")
+    public List<IPlan> getIPlan(@PathVariable Long adId){
+        System.out.println(adId);
+        return iPlanRepository.findAllByAdvertisement_Id(adId);
+    }
 
 }

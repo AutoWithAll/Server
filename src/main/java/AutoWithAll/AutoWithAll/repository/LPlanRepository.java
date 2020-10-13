@@ -17,6 +17,9 @@ public interface LPlanRepository extends JpaRepository<LPlan,Long> {
     @Override
     List<LPlan> findAll();
 
+
+    List<LPlan> findAllByAdvertisement_Id(Long adId);
+
 //    Advertisement<LPlan> findByAdId(Long AdId, Pageable pageable);
 //    Optional<Comment> findByIdAndPostId(Long id, Long postId);
 }
