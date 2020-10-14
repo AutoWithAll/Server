@@ -106,6 +106,7 @@ public class Advertisement {
     @JsonManagedReference
     private List<IPlan> iPlan;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "advertisement")
     Set<ReportAd> reportAds;
 

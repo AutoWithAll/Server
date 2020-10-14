@@ -1,5 +1,8 @@
 package AutoWithAll.AutoWithAll.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -36,6 +39,7 @@ public class ReportAd {
 //    @ManyToMany
 //    Set<Advertisement> report;  ,referencedColumnName = "id", insertable=false, updatable=false
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "adverticement_id")
     private Advertisement advertisement;
 

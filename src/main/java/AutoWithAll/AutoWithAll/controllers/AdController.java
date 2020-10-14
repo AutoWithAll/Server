@@ -5,6 +5,7 @@ import AutoWithAll.AutoWithAll.models.ReportAd;
 import AutoWithAll.AutoWithAll.models.User;
 import AutoWithAll.AutoWithAll.payload.request.AdRequest;
 import AutoWithAll.AutoWithAll.payload.request.ReportAdRequest;
+import AutoWithAll.AutoWithAll.payload.response.MessageResponse;
 import AutoWithAll.AutoWithAll.repository.AdRepository;
 import AutoWithAll.AutoWithAll.repository.UserRepository;
 import AutoWithAll.AutoWithAll.security.services.AdDetailsImpl;
@@ -143,14 +144,14 @@ public class AdController {
     }
 
     @PostMapping("/reportad/{id}")
-    public ReportAd ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
+    public ResponseEntity<?> ReportAdpost(@PathVariable Long id, @RequestBody ReportAdRequest reportAdRequest) {
         Advertisement advertisement = adRepository.findById(id).get();
 
         ReportAd reportAd = new ReportAd(reportAdRequest.getReason(), reportAdRequest.getF_name(),
                 reportAdRequest.getL_name(), reportAdRequest.getT_number(), reportAdRequest.getEmail(),
                 reportAdRequest.getMessage(), advertisement);
-
-        return reportAdDetails.saveReportAdDetails(reportAd);
+         reportAdDetails.saveReportAdDetails(reportAd);
+        return ResponseEntity.ok(new MessageResponse("Report Advertisement successfully!"));
     }
 
     @GetMapping("/getAddsByCurrentUser")
