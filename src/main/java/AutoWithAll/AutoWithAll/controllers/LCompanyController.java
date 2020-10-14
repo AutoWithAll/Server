@@ -16,6 +16,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
 @RequestMapping("/lcompany")
@@ -41,13 +43,6 @@ public class LCompanyController {
         Advertisement advertisement = adRepository.findById(lPlanRequest.getAdId()).get();
         if(adRepository.existsById(lPlanRequest.getAdId())){
         LPlan lPlan = new LPlan(
-
-
-
-
-
-//                lPlanRequest.getL_plan(),
-//
                 lPlanRequest.getPlanAmount(),
                 lPlanRequest.getNoOfInstallments(),
                 lPlanRequest.getInterest(),
@@ -64,5 +59,22 @@ public class LCompanyController {
                     .badRequest()
                     .body(new MessageResponse("Error: Invalid Advertisment Id!"));
         }
+    }
+
+    @GetMapping("/getadconfrim")
+    @PreAuthorize("hasRole('ROLE_LCOMPANY')")
+    public List<Advertisement> getConfrimad(Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        return adRepository.getLConfrimAd(user.getId());
+    }
+
+    @GetMapping("/getpendingad")
+    @PreAuthorize("hasRole('ROLE_LCOMPANY')")
+    public List<Advertisement> getPending(Authentication authentication){
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        User user = userRepository.findById(userDetails.getId()).get();
+        System.out.println(user.getId());
+        return adRepository.getLPendingAd(user.getId());
     }
 }

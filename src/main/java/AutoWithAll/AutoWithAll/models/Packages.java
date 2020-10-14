@@ -9,9 +9,13 @@ public class Packages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pkgId;
+
     private String packageName;
+
     private String price;
+
     private Integer maxAd;
+
     @Column(name="creation_date")
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(pattern="yyyy-MM--dd")

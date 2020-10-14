@@ -109,11 +109,9 @@ public class Advertisement {
     @OneToMany(mappedBy = "advertisement")
     Set<ReportAd> reportAds;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "advertisement"
-    )
-    private Set<LPlan> lPlans = new HashSet<>();
+    @OneToMany(mappedBy = "advertisement")
+    @JsonManagedReference
+    private List<LPlan> lPlans;
 
     public Advertisement(){}
 
@@ -365,11 +363,11 @@ public class Advertisement {
         this.user = user;
     }
 
-    public Set<LPlan> getlPlans() {
+    public List<LPlan> getlPlans() {
         return lPlans;
     }
 
-    public void setlPlans(Set<LPlan> lPlans) {
+    public void setlPlans(List<LPlan> lPlans) {
         this.lPlans = lPlans;
     }
 

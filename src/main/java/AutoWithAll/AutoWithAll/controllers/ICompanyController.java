@@ -69,7 +69,7 @@ public class ICompanyController {
     public List<Advertisement> getConfrimad(Authentication authentication){
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
-        return adRepository.getConfrimAd(user.getId());
+        return adRepository.getIConfrimAd(user.getId());
     }
 
     @GetMapping("/getpendingad")
@@ -78,6 +78,6 @@ public class ICompanyController {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         User user = userRepository.findById(userDetails.getId()).get();
         System.out.println(user.getId());
-        return adRepository.getPendingAd(user.getId());
+        return adRepository.getIPendingAd(user.getId());
     }
 }

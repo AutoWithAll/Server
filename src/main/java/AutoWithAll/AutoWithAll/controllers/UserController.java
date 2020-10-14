@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @CrossOrigin(origins = "*",maxAge = 3600)
@@ -137,8 +138,9 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
 //    public List<User> getLCompant(){
 //        return userRepository.getAllLCompany();
 //    }
-    @GetMapping("/getlplan/{adid}")
+    @GetMapping("/getlplan/{adId}")
     public List<LPlan> getLPlan(@PathVariable Long adId){
+        System.out.println(adId);
     return lPlanRepository.findAllByAdvertisement_Id(adId);
     }
 
@@ -146,6 +148,11 @@ public ResponseEntity<?> editNormalUserEditProfile(@RequestBody SignupRequest si
     public List<IPlan> getIPlan(@PathVariable Long adId){
         System.out.println(adId);
         return iPlanRepository.findAllByAdvertisement_Id(adId);
+    }
+
+    @GetMapping("getUserById/{id}")
+    public Optional<User>getUserById(@PathVariable Long id){
+    return userRepository.findById(id);
     }
 
 }
